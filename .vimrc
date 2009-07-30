@@ -20,7 +20,7 @@ set ignorecase    "Ignore la casse dans les motifs de recherche
 set mouse=a       "Activation de la souris
 set cursorline    "Soulignement de la ligne courante
 syntax on         "Activation de la coloration syntaxique
-colorscheme evening
+colorscheme bensday
 set laststatus=2  " Afficher en permanence la barre d'état (en plus de la barre de commande)
 set statusline=%=%f%10p%%%10c/%l
 filetype on       "Detection to determine the type of the current file

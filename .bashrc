@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-export PATH=/home/rom/bin:$PATH
+export PATH=~/bin:$PATH
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
