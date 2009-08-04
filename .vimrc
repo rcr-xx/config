@@ -92,8 +92,8 @@ noremap <C-j> :tabfirst<CR>
 noremap <C-k> :tablast<CR>
 noremap <C-w> :tabclose<CR>
 imap ,pprint from pprint import pprint<CR>pprint()<Esc>i
-imap ,print print '\033[1;42m',  ,'\033[1;m'<Esc>11hi
-imap ,pdb import pdf; pdb.set_trace()
+imap ,print print '\033[1;42m',  , '\033[1;m'<Esc>12hi
+imap ,pdb import pdb; pdb.set_trace()
 
 " ===============================================================================================
 " ===============================================================================================
