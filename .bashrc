@@ -35,7 +35,7 @@ fi
 #esac
 
 # Comment in the above and uncomment this below for a color prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='\[\033[01;47m\][\t]${debian_chroot:+($debian_chroot)}\u@\h\:\w\$\[\033[00m\] '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -68,7 +68,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ll='ls -lh'
 alias pvxcore='cd ~/sandboxes/PvxCoreApplication/'
-alias runzope2='cd ~/zope/plateforme; ./bin/runzope'
+alias pvxlib='cd ~/zope212/lib/python2.5/site-packages'
 alias runzope='cd ~/zope212/plateforme.provexi.fr; ./bin/runzope'
 alias gig='git grep'
 alias gia='git add'
@@ -108,3 +108,4 @@ fi
 #fi
 
 export MOZ_NO_REMOTE=1
+export PYTHONSTARTUP=/home/rom/.config/pythonConfig.py

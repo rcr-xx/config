@@ -82,18 +82,29 @@ map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
 map <F5> :set paste!<Bar>set paste?<CR>
 map <F6> :set number!<Bar>set number?<CR>
 map <F7>  :%s/  *$//<CR>
+
+noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
+noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
 noremap <M-K> <C-U>  " Déplace 1/2 écran vers le haut
 noremap <M-J> <C-D>  " Déplace 1/2 écran vers le bas
-nnoremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
-noremap <C-T> :tabnew<CR>
-noremap <C-l> :tabnext<CR>
-noremap <C-h> :tabprevious<CR>
-noremap <C-j> :tabfirst<CR>
-noremap <C-k> :tablast<CR>
-noremap <C-w> :tabclose<CR>
+noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
+"noremap <C-T> :tabnew<CR>
+"noremap <C-l> :tabnext<CR>
+"noremap <C-h> :tabprevious<CR>
+"noremap <C-j> :tabfirst<CR>
+"noremap <C-k> :tablast<CR>
+"noremap <C-w> :tabclose<CR>
+
 imap ,pprint from pprint import pprint<CR>pprint()<Esc>i
-imap ,print print '\033[1;42m',  , '\033[1;m'<Esc>12hi
+imap ,pgreen print '\033[1;42m',  , '\033[1;m'<Esc>12hi
+imap ,pred   print '\033[1;41m',  , '\033[1;m'<Esc>12hi
+imap ,pbrown print '\033[1;43m',  , '\033[1;m'<Esc>12hi
+imap ,pblue  print '\033[1;44m',  , '\033[1;m'<Esc>12hi
+imap ,pmag   print '\033[1;45m',  , '\033[1;m'<Esc>12hi
+imap ,pcyan  print '\033[1;46m',  , '\033[1;m'<Esc>12hi
+imap ,pgray  print '\033[1;47m',  , '\033[1;m'<Esc>12hi
 imap ,pdb import pdb; pdb.set_trace()
+imap ,head # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 
 " ===============================================================================================
 " ===============================================================================================
