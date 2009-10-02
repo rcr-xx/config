@@ -1,30 +1,36 @@
 " ===========================================================================================
 "                                    CONFIGURATION
 " ===========================================================================================
-set nocompatible  "Rend Vim non compatible avec Vi
-set shiftwidth=4  "Défini 4 espace comme taille d'indentation
-set tabstop=2     "Défini 2 espace commet taille d'indentation
-set softtabstop=2 "Nombre d'espaces qu'un <Tab> ou <RetArr> représentent
-set expandtab     "Insère un nombre approprié d'espace pour <Tab>
-set smarttab      "<Tab> en début de ligne, insère blancs selon shiftwidth sinon tabstop
-set smartindent   "Indentation des mots de l'option 'cinwords'
+set nocompatible  " Rend Vim non compatible avec Vi
+set shiftwidth=4  " Défini 4 espace comme taille d'indentation
+set tabstop=2     " Défini 2 espace commet taille d'indentation
+set softtabstop=2 " Nombre d'espaces qu'un <Tab> ou <RetArr> représentent
+set expandtab     " Insère un nombre approprié d'espace pour <Tab>
+set smarttab      " <Tab> en début de ligne, insère blancs selon shiftwidth sinon tabstop
+set smartindent   " Indentation des mots de l'option 'cinwords'
 set backspace=indent,eol,start "Retour Arrière autorisé en mode Insertion pour suppression
-set ruler         "Affiche en bas à droite la position du curseur
-set showcmd       "Affiche en bas à droite la commande en cours de saisie
-set showmode      "Affiche en bas à droite le mode actif
-set showmatch     "Affiche automatiquement la parenthèse correspondante
-set wrap          "Si ligne trop longue se poursuit sur ligne suivante
-set incsearch     "Montre correspondance partielle du motif de recherche
-set hlsearch      "Surligne les occurrences de la chaîne recherchée
-set ignorecase    "Ignore la casse dans les motifs de recherche
-set mouse=a       "Activation de la souris
-set cursorline    "Soulignement de la ligne courante
-syntax on         "Activation de la coloration syntaxique
-colorscheme evening
+set ruler         " Affiche en bas à droite la position du curseur
+set showcmd       " Affiche en bas à droite la commande en cours de saisie
+set showmode      " Affiche en bas à droite le mode actif
+set showmatch     " Affiche automatiquement la parenthèse correspondante
+set wrap          " Si ligne trop longue se poursuit sur ligne suivante
+set incsearch     " Montre correspondance partielle du motif de recherche
+set hlsearch      " Surligne les occurrences de la chaîne recherchée
+set ignorecase    " Ignore la casse dans les motifs de recherche
+set mouse=a       " Activation de la souris
+set cursorline    " Soulignement de la ligne courante
+set t_Co=256e     " Passe en 256 couleurs
+colorscheme zenburn
+syntax on         " Activation de la coloration syntaxique
 set laststatus=2  " Afficher en permanence la barre d'état (en plus de la barre de commande)
 set statusline=%=%f%10p%%%10c/%l
-filetype on       "Detection to determine the type of the current file
+set wildmode=list:longest " Affiche une liste identique à la complétion bash
+filetype on       " Detection to determine the type of the current file
 filetype plugin on
+au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
+
+" Tag les classes de pvxcore
+set tag=~/sandboxes/PvxCoreApplication/tags
 
 " Surligne les espaces de fin de ligne
 highlight WhitespaceEOL ctermbg=red guibg=red
@@ -95,16 +101,16 @@ noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
 "noremap <C-k> :tablast<CR>
 "noremap <C-w> :tabclose<CR>
 
-imap ,pprint from pprint import pprint<CR>pprint()<Esc>i
-imap ,pgreen print '\033[1;42m',  , '\033[1;m'<Esc>12hi
-imap ,pred   print '\033[1;41m',  , '\033[1;m'<Esc>12hi
-imap ,pbrown print '\033[1;43m',  , '\033[1;m'<Esc>12hi
-imap ,pblue  print '\033[1;44m',  , '\033[1;m'<Esc>12hi
-imap ,pmag   print '\033[1;45m',  , '\033[1;m'<Esc>12hi
-imap ,pcyan  print '\033[1;46m',  , '\033[1;m'<Esc>12hi
-imap ,pgray  print '\033[1;47m',  , '\033[1;m'<Esc>12hi
-imap ,pdb import pdb; pdb.set_trace()
-imap ,head # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
+imap ,ppr  from pprint import pprint<CR>pprint()<Esc>i
+imap ,pgr  print '\033[1;42m',  , '\033[1;m'<Esc>12hi
+imap ,pre  print '\033[1;41m',  , '\033[1;m'<Esc>12hi
+imap ,pbr  print '\033[1;43m',  , '\033[1;m'<Esc>12hi
+imap ,pbl  print '\033[1;44m',  , '\033[1;m'<Esc>12hi
+imap ,pma  print '\033[1;45m',  , '\033[1;m'<Esc>12hi
+imap ,pcy  print '\033[1;46m',  , '\033[1;m'<Esc>12hi
+imap ,pgr  print '\033[1;47m',  , '\033[1;m'<Esc>12hi
+imap ,pdb  import pdb; pdb.set_trace()
+imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 
 " ===============================================================================================
 " ===============================================================================================
