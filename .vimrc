@@ -29,8 +29,50 @@ filetype on       " Detection to determine the type of the current file
 filetype plugin on
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 
+function! ShortTabLine()
+    let ret = ''
+    for i in range(tabpagenr('$'))
+      "Select the color group for highlighting active tab
+      if i + 1 == tabpagenr()
+          let ret .= '%#errorMsg#'
+      else
+          let ret .= '%#Tab#'
+      endif
+      "Find the buffername for the tablabel
+      let buflist = tabpagebuflist(i+1)
+      let winnr = tabpagewinnr(i+1)
+      let buffername = bufname(buflist[winnr - 1])
+      let filename = fnamemodify(buffername, ':t')
+      "Check if there is no name
+      if filename == ''
+          let filename = 'noname'
+      endif
+        for bufnr in buflist
+            if getbufvar(bufnr, "&modified")
+              let filename = '!'.filename
+              break
+            endif
+        endfor
+
+      "Only show the first 18 letters of the name and
+      ".. if the filename is more than 20 letters long
+      if strlen(filename) >= 18
+          let ret .= ' ['.filename[0:17].'..] '
+      else
+          let ret .= ' ['.filename.'] '
+      endif
+    endfor
+
+    "After the last tab fill with TabLineFill and reset tab page #
+    let ret .= '%#TabLineFill#%T'
+    return ret
+endfunction
+
+set tabline=%!ShortTabLine()
+
 " Tag les classes de pvxcore
 set tag=~/sandboxes/PvxCoreApplication/tags
+let Tlist_Exit_OnlyWindow=1
 
 " Surligne les espaces de fin de ligne
 highlight WhitespaceEOL ctermbg=red guibg=red
