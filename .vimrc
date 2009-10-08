@@ -136,12 +136,6 @@ noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
 noremap <M-K> <C-U>  " Déplace 1/2 écran vers le haut
 noremap <M-J> <C-D>  " Déplace 1/2 écran vers le bas
 noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
-"noremap <C-T> :tabnew<CR>
-"noremap <C-l> :tabnext<CR>
-"noremap <C-h> :tabprevious<CR>
-"noremap <C-j> :tabfirst<CR>
-"noremap <C-k> :tablast<CR>
-"noremap <C-w> :tabclose<CR>
 
 imap ,ppr  from pprint import pprint<CR>pprint()<Esc>i
 imap ,pgr  print '\033[1;42m',  , '\033[1;m'<Esc>12hi
@@ -153,6 +147,7 @@ imap ,pcy  print '\033[1;46m',  , '\033[1;m'<Esc>12hi
 imap ,pgr  print '\033[1;47m',  , '\033[1;m'<Esc>12hi
 imap ,pdb  import pdb; pdb.set_trace()
 imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
+imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
 " ===============================================================================================
 " ===============================================================================================
