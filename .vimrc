@@ -148,12 +148,11 @@ map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
 map <F5> :set paste!<Bar>set paste?<CR>
 map <F6> :set number!<Bar>set number?<CR>
 map <F7>  :%s/  *$//<CR>
+map <M-Left> gT
 map <M-Right> gt
-map <M-h> gT
+map <M-t> :tabnew<CRW:e 
 
 
-noremap <C-t> :tabnew<cr>:e
-noremap <A-t> :tabnew<cr>:e
 noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
 noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
 noremap <M-K> <C-U>  " Déplace 1/2 écran vers le haut
