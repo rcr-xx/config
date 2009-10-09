@@ -20,55 +20,73 @@ set ignorecase    " Ignore la casse dans les motifs de recherche
 set mouse=a       " Activation de la souris
 set cursorline    " Soulignement de la ligne courante
 set t_Co=256e     " Passe en 256 couleurs
-colorscheme zenburn
-syntax on         " Activation de la coloration syntaxique
 set laststatus=2  " Afficher en permanence la barre d'état (en plus de la barre de commande)
-set statusline=%=%f%10p%%%10c/%l
+set statusline=%=%f%10p%%%10c/%l  " Affiche info sur la ligne
 set wildmode=list:longest " Affiche une liste identique à la complétion bash
+set showtabline=2 " Affiche toujours les onglets
+
+syntax on         " Activation de la coloration syntaxique
+colorscheme zenburn
+
 filetype on       " Detection to determine the type of the current file
 filetype plugin on
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 
-function! ShortTabLine()
-    let ret = ''
-    for i in range(tabpagenr('$'))
-      "Select the color group for highlighting active tab
-      if i + 1 == tabpagenr()
-          let ret .= '%#errorMsg#'
-      else
-          let ret .= '%#Tab#'
-      endif
-      "Find the buffername for the tablabel
-      let buflist = tabpagebuflist(i+1)
-      let winnr = tabpagewinnr(i+1)
-      let buffername = bufname(buflist[winnr - 1])
-      let filename = fnamemodify(buffername, ':t')
-      "Check if there is no name
-      if filename == ''
-          let filename = 'noname'
-      endif
-        for bufnr in buflist
-            if getbufvar(bufnr, "&modified")
-              let filename = '!'.filename
-              break
-            endif
-        endfor
+function MyTabLine()
+	  let s = ''
+	  for i in range(tabpagenr('$'))
+	    " select the highlighting
+	    if i + 1 == tabpagenr()
+	      let s .= '%#errorMsg#'
+	    else
+	      let s .= '%#Tab#'
+	    endif
 
-      "Only show the first 18 letters of the name and
-      ".. if the filename is more than 20 letters long
-      if strlen(filename) >= 18
-          let ret .= ' ['.filename[0:17].'..] '
-      else
-          let ret .= ' ['.filename.'] '
-      endif
+	    " set the tab page number (for mouse clicks)
+	    let s .= '%' . (i + 1) . 'T'
+
+	    " the label is made by MyTabLabel()
+	    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+	  endfor
+
+	  " after the last tab fill with TabLineFill and reset tab page nr
+	  let s .= '%#TabLineFill#%T'
+
+	  " right-align the label to close the current tab page
+	  if tabpagenr('$') > 1
+	    let s .= '%=%#TabLine#%999X X '
+	  endif
+
+	  return s
+	endfunction
+
+function MyTabLabel(n)
+	  let buflist = tabpagebuflist(a:n)
+	  let winnr = tabpagewinnr(a:n)
+	  let buffername = bufname(buflist[winnr - 1])
+    let filename = fnamemodify(buffername, ':t')
+    if filename == ''
+        let filename = 'noname'
+    endif
+    for bufnr in buflist
+        if getbufvar(bufnr, "&modified")
+          let filename = '!'.filename
+          break
+        endif
     endfor
-
-    "After the last tab fill with TabLineFill and reset tab page #
-    let ret .= '%#TabLineFill#%T'
+    "Only show the first 18 letters of the name and
+    ".. if the filename is more than 20 letters long
+    let ret = ''
+    if strlen(filename) >= 18
+        let ret .= '['.filename[0:17].'..]'
+    else
+        let ret .= '['.filename.']'
+    endif
     return ret
-endfunction
 
-set tabline=%!ShortTabLine()
+	endfunction
+
+set tabline=%!MyTabLine()
 
 " Tag les classes de pvxcore
 set tag=~/sandboxes/PvxCoreApplication/tags
@@ -130,7 +148,12 @@ map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
 map <F5> :set paste!<Bar>set paste?<CR>
 map <F6> :set number!<Bar>set number?<CR>
 map <F7>  :%s/  *$//<CR>
+map <M-Right> gt
+map <M-h> gT
 
+
+noremap <C-t> :tabnew<cr>:e
+noremap <A-t> :tabnew<cr>:e
 noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
 noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
 noremap <M-K> <C-U>  " Déplace 1/2 écran vers le haut

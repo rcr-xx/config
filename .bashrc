@@ -112,4 +112,4 @@ fi
 #fi
 
 export MOZ_NO_REMOTE=1
-export PYTHONSTARTUP=/home/rom/.config/pythonConfig.py
+#export PYTHONSTARTUP=/home/rom/.config/pythonConfig.py
