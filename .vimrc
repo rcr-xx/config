@@ -3,8 +3,8 @@
 " ===========================================================================================
 set nocompatible  " Rend Vim non compatible avec Vi
 set shiftwidth=4  " Défini 4 espace comme taille d'indentation
-set tabstop=2     " Défini 2 espace commet taille d'indentation
-set softtabstop=2 " Nombre d'espaces qu'un <Tab> ou <RetArr> représentent
+"set tabstop=4    " Défini 2 espace commet taille d'indentation
+"set softtabstop=2 " Nombre d'espaces qu'un <Tab> ou <RetArr> représentent
 set expandtab     " Insère un nombre approprié d'espace pour <Tab>
 set smarttab      " <Tab> en début de ligne, insère blancs selon shiftwidth sinon tabstop
 set smartindent   " Indentation des mots de l'option 'cinwords'
@@ -123,19 +123,6 @@ function! Paste(...)
 endfunction
 :com! -nargs=* Paste call Paste()
 
-" Git grep dans vim
-func GitGrep(...)
-  let save = &grepprg
-  set grepprg=git\ grep\ -n\ $*
-  let s = 'grep'
-  for i in a:000
-    let s = s . ' ' . i
-  endfor
-  exe s
-  let &grepprg = save
-endfun
-command -nargs=? GO call GitGrep(<f-args>)
-
 " ===============================================================================================
 " ===============================================================================================
 
@@ -143,6 +130,7 @@ command -nargs=? GO call GitGrep(<f-args>)
 " ===============================================================================================
 "                                      HOTKEYS
 " ===============================================================================================
+map <F2> :source ~/.vimrc<CR>    " Recharge configuration vim
 map <F3> :s/^/#<CR>    " Commente le bloc sélectionné
 map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
 map <F5> :set paste!<Bar>set paste?<CR>
@@ -150,7 +138,9 @@ map <F6> :set number!<Bar>set number?<CR>
 map <F7>  :%s/  *$//<CR>
 map <M-Left> gT
 map <M-Right> gt
-map <M-t> :tabnew<CRW:e 
+map <M-Up> :tabnew<CR>:tabm<CR>:e 
+map <M-Down> :tabnew<CR>:GitGrep 
+
 
 
 noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut

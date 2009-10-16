@@ -1,5 +1,5 @@
 [Configuration]
-AccelNewTab=<Shift><Control>t
+AccelNewTab=<Control>t
 AccelNewWindow=<control><shift>n
 AccelDetachTab=<control><shift>d
 AccelCloseTab=<control><shift>w
