@@ -94,6 +94,7 @@ alias send_master="echo '' | mutt git-master@provexi.fr -s"
 alias send_next="echo '' | mutt git-next@provexi.fr -s"
 alias get_sql_backup="cd ~/download; scp castor2:/var/lib/postgresql/pgdump_provexi_prod.sql ."
 alias del_pyc='find ~/sandboxes/PvxCoreApplication -name "*.pyc" -exec rm {}  \;'
+alias del_swp='find ~/sandboxes/PvxCoreApplication -name "*.swp" -exec rm {}  \;'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

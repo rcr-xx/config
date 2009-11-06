@@ -1,29 +1,30 @@
 " ===========================================================================================
 "                                    CONFIGURATION
 " ===========================================================================================
-set nocompatible  " Rend Vim non compatible avec Vi
-set shiftwidth=4  " Défini 4 espace comme taille d'indentation
-"set tabstop=4    " Défini 2 espace commet taille d'indentation
-"set softtabstop=2 " Nombre d'espaces qu'un <Tab> ou <RetArr> représentent
-set expandtab     " Insère un nombre approprié d'espace pour <Tab>
-set smarttab      " <Tab> en début de ligne, insère blancs selon shiftwidth sinon tabstop
-set smartindent   " Indentation des mots de l'option 'cinwords'
-set backspace=indent,eol,start "Retour Arrière autorisé en mode Insertion pour suppression
-set ruler         " Affiche en bas à droite la position du curseur
-set showcmd       " Affiche en bas à droite la commande en cours de saisie
-set showmode      " Affiche en bas à droite le mode actif
-set showmatch     " Affiche automatiquement la parenthèse correspondante
-set wrap          " Si ligne trop longue se poursuit sur ligne suivante
-set incsearch     " Montre correspondance partielle du motif de recherche
-set hlsearch      " Surligne les occurrences de la chaîne recherchée
-set ignorecase    " Ignore la casse dans les motifs de recherche
-set mouse=a       " Activation de la souris
-set cursorline    " Soulignement de la ligne courante
-set t_Co=256e     " Passe en 256 couleurs
-set laststatus=2  " Afficher en permanence la barre d'état (en plus de la barre de commande)
-set statusline=%=%f%10p%%%10c/%l  " Affiche info sur la ligne
-set wildmode=list:longest " Affiche une liste identique à la complétion bash
-set showtabline=2 " Affiche toujours les onglets
+set nocompatible                 " Rend Vim non compatible avec Vi
+set shiftwidth=4                 " Nombre de caractère utilisé pour l'indentation
+set tabstop=4                    " Nombre d'espace par tab
+set softtabstop=2                " Pour que backspace supprime 4 espaces
+set expandtab                    " Insère un nombre approprié d'espace pour <Tab>
+set smarttab                     " <Tab> en début de ligne, insère blancs selon shiftwidth sinon tabstop
+set smartindent                  " Indentation des mots de l'option 'cinwords'
+set backspace=indent,eol,start   " Retour Arrière autorisé en mode Insertion pour suppression
+set ruler                        " Affiche en bas à droite la position du curseur
+set showcmd                      " Affiche en bas à droite la commande en cours de saisie
+set showmode                     " Affiche en bas à droite le mode actif
+set showmatch                    " Affiche automatiquement la parenthèse correspondante
+set wrap                         " Si ligne trop longue se poursuit sur ligne suivante
+set incsearch                    " Montre correspondance partielle du motif de recherche
+set hlsearch                     " Surligne les occurrences de la chaîne recherchée
+set ignorecase                   " Ignore la casse dans les motifs de recherche
+set mouse=a                      " Activation de la souris
+set cursorline                   " Soulignement de la ligne courante
+set t_Co=256e                    " Passe en 256 couleurs
+set laststatus=2                 " Afficher en permanence la barre d'état (en plus de la barre de commande)
+set statusline=%=%f%10p%%%10c/%l " Affiche info sur la ligne
+set wildmode=list:longest        " Affiche une liste identique à la complétion bash
+set showtabline=2                " Affiche toujours les onglets
+set lcs:tab:>-,trail:.           " affiche les tabs, les ' ' en fin de ligne et les \n
 
 syntax on         " Activation de la coloration syntaxique
 colorscheme zenburn
@@ -32,7 +33,7 @@ filetype on       " Detection to determine the type of the current file
 filetype plugin on
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 
-function MyTabLine()
+function! MyTabLine()
 	  let s = ''
 	  for i in range(tabpagenr('$'))
 	    " select the highlighting
@@ -60,7 +61,7 @@ function MyTabLine()
 	  return s
 	endfunction
 
-function MyTabLabel(n)
+function! MyTabLabel(n)
 	  let buflist = tabpagebuflist(a:n)
 	  let winnr = tabpagewinnr(a:n)
 	  let buffername = bufname(buflist[winnr - 1])
@@ -77,13 +78,16 @@ function MyTabLabel(n)
     "Only show the first 18 letters of the name and
     ".. if the filename is more than 20 letters long
     let ret = ''
-    if strlen(filename) >= 18
-        let ret .= '['.filename[0:17].'..]'
+    let ret = matchstr (filename, "[^.]*")
+    let ret1 = ''
+    if strlen(ret) == 0
+        let ret1 .= filename
+    elseif strlen(ret) >= 16
+        let ret1 .= '['.ret[0:15].'..]'
     else
-        let ret .= '['.filename.']'
+        let ret1 .= '['.ret.']'
     endif
-    return ret
-
+    return ret1
 	endfunction
 
 set tabline=%!MyTabLine()
@@ -136,18 +140,18 @@ map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
 map <F5> :set paste!<Bar>set paste?<CR>
 map <F6> :set number!<Bar>set number?<CR>
 map <F7>  :%s/  *$//<CR>
+noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
+map <silent> <F9> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" " sur pression de la touche F3 highlight les charactères qui dépassent la 80ème colonne
 map <M-Left> gT
 map <M-Right> gt
 map <M-Up> :tabnew<CR>:tabm<CR>:e 
 map <M-Down> :tabnew<CR>:GitGrep 
 
 
-
 noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
 noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
 noremap <M-K> <C-U>  " Déplace 1/2 écran vers le haut
 noremap <M-J> <C-D>  " Déplace 1/2 écran vers le bas
-noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
 
 imap ,ppr  from pprint import pprint<CR>pprint()<Esc>i
 imap ,pgr  print '\033[1;42m',  , '\033[1;m'<Esc>12hi
