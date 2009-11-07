@@ -33,6 +33,8 @@ filetype on       " Detection to determine the type of the current file
 filetype plugin on
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 
+
+
 function! MyTabLine()
 	  let s = ''
 	  for i in range(tabpagenr('$'))
@@ -47,7 +49,7 @@ function! MyTabLine()
 	    let s .= '%' . (i + 1) . 'T'
 
 	    " the label is made by MyTabLabel()
-	    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+        let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
 	  endfor
 
 	  " after the last tab fill with TabLineFill and reset tab page nr
@@ -69,25 +71,20 @@ function! MyTabLabel(n)
     if filename == ''
         let filename = 'noname'
     endif
+    "Only show the first 18 letters of  the name and
+    ".. if the filename is more than 20 letters long
+    let ret = ''
+    let ret = matchstr (filename, ".[^.]*")
+    if strlen(ret) >= 16
+        let ret = ret[0:15].'..'
+    endif
     for bufnr in buflist
         if getbufvar(bufnr, "&modified")
-          let filename = '!'.filename
+          let ret = '!'.ret
           break
         endif
     endfor
-    "Only show the first 18 letters of the name and
-    ".. if the filename is more than 20 letters long
-    let ret = ''
-    let ret = matchstr (filename, "[^.]*")
-    let ret1 = ''
-    if strlen(ret) == 0
-        let ret1 .= filename
-    elseif strlen(ret) >= 16
-        let ret1 .= '['.ret[0:15].'..]'
-    else
-        let ret1 .= '['.ret.']'
-    endif
-    return ret1
+    return ret
 	endfunction
 
 set tabline=%!MyTabLine()
@@ -135,6 +132,7 @@ endfunction
 "                                      HOTKEYS
 " ===============================================================================================
 map <F2> :source ~/.vimrc<CR>    " Recharge configuration vim
+
 map <F3> :s/^/#<CR>    " Commente le bloc sélectionné
 map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
 map <F5> :set paste!<Bar>set paste?<CR>
@@ -145,7 +143,8 @@ map <silent> <F9> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" " sur pression de la to
 map <M-Left> gT
 map <M-Right> gt
 map <M-Up> :tabnew<CR>:tabm<CR>:e 
-map <M-Down> :tabnew<CR>:GitGrep 
+command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
+command! -nargs=+ G :tabe | :GitGrep <q-args>
 
 
 noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
@@ -167,6 +166,5 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 
 " ===============================================================================================
 " ===============================================================================================
-
 
 
