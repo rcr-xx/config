@@ -169,6 +169,12 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 " ===============================================================================================
 "                                      PLUGINS
 " ===============================================================================================
+"
+" Installer vimball
+"   1. vim tail-03.vba
+"   2. :so %
+"   3. :q
+
 " ==> Zenburn :
 "    * Fonction : colorsheme
 "    * Url : http://www.vim.org/scripts/script.php?script_id=415
@@ -197,3 +203,12 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 "         - $ vim Align.vba.gz
 "         - :so %
 "         - :q
+
+" ===============================================================================================
+"                                     HELP
+" ===============================================================================================
+"
+" ==> TAG
+"   Tag stack
+"   * :tj / --> Recherche le tag après le /
+"   * :po --> Revenir à l'écran précédent
