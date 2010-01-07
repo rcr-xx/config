@@ -1,5 +1,5 @@
 " ===========================================================================================
-"                                    CONFIGURATION
+"                          CONFIG POUR DEVELOPPEMENT PYTHON
 " ===========================================================================================
 set nocompatible                 " Rend Vim non compatible avec Vi
 set shiftwidth=4                 " Nombre de caractère utilisé pour l'indentation
@@ -24,17 +24,16 @@ set laststatus=2                 " Afficher en permanence la barre d'état (en p
 set statusline=%=%f%10p%%%10c/%l " Affiche info sur la ligne
 set wildmode=list:longest        " Affiche une liste identique à la complétion bash
 set showtabline=2                " Affiche toujours les onglets
-set lcs:tab:>-,trail:.           " affiche les tabs, les ' ' en fin de ligne et les \n
+set lcs:tab:>-,trail:.           " Affiche les tabs, les ' ' en fin de ligne et les \n
+set nu                           " Affiche les numéros de ligne
 
 syntax on         " Activation de la coloration syntaxique
 colorscheme zenburn
 
-filetype on       " Detection to determine the type of the current file
+filetype on                      " Detection to determine the type of the current file
 filetype plugin on
-"filetype plugin indent on        " For plugin Pyflakes
+filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
-
-
 
 function! MyTabLine()
 	  let s = ''
@@ -125,15 +124,11 @@ function! Paste(...)
 endfunction
 :com! -nargs=* Paste call Paste()
 
-" ===============================================================================================
-" ===============================================================================================
-
 
 " ===============================================================================================
 "                                      HOTKEYS
 " ===============================================================================================
 map <F2> :source ~/.vimrc<CR>    " Recharge configuration vim
-
 map <F3> :s/^/#<CR>    " Commente le bloc sélectionné
 map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
 map <F5> :set paste!<Bar>set paste?<CR>
@@ -146,7 +141,6 @@ map <M-Right> gt
 map <M-Up> :tabnew<CR>:tabm<CR>:e 
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
 command! -nargs=+ G :tabe | :GitGrep <q-args>
-
 
 noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
 noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
@@ -165,15 +159,10 @@ imap ,pdb  import pdb; pdb.set_trace()
 imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
-" ===============================================================================================
-" ===============================================================================================
-
-
 
 " ===============================================================================================
 "                                      SETUP
 " ===============================================================================================
-"
 " sudo apt-get install vim-gnome
 
 
@@ -208,5 +197,3 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 "         - $ vim Align.vba.gz
 "         - :so %
 "         - :q
-" ===============================================================================================
-" ===============================================================================================
