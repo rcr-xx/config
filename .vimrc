@@ -31,6 +31,7 @@ colorscheme zenburn
 
 filetype on       " Detection to determine the type of the current file
 filetype plugin on
+"filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 
 
@@ -170,12 +171,42 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 
 
 " ===============================================================================================
-"                                      HOTKEYS
+"                                      SETUP
 " ===============================================================================================
 "
 " sudo apt-get install vim-gnome
-"
-" plugins to install : 
-"   - zenburn
+
+
+" ===============================================================================================
+"                                      PLUGINS
+" ===============================================================================================
+" ==> Zenburn :
+"    * Fonction : colorsheme
+"    * Url : http://www.vim.org/scripts/script.php?script_id=415
+
+" ==> Taglist : menu de navigation de la classe courante
+"    * Fonction : rajoute sur la gauche de l'écran un menu de navigation de la classe courante
+"    * URL : http://sourceforge.net/project/showfiles.php?group_id=181103
+"    * Installation :
+"         - Décompresser le plugin dans ~/.vim
+"         - $ cd ~/.vim/doc
+"         - $ vim
+"         - :helptags .
+
+" ==> Pyflakes
+"    * Fonction : Vérifie syntaxe python
+"    * URL : http://www.vim.org/scripts/script.php?script_id=2441
+"    * Installation :
+"         - Décompresser le plugin dans ~/.vim
+"    * Décompresser le plugin dans le répertoire ~/.vim/after/ftplugin/python
+"    * Ajouter dans le fichier .vimrc la ligne suivante : filetype plugin indent on
+
+" ==> Align
+"    * Fonction : Alignement du texte
+"    * URL : http://www.vim.org/scripts/script.php?script_id=294
+"    * Installation :
+"         - $ vim Align.vba.gz
+"         - :so %
+"         - :q
 " ===============================================================================================
 " ===============================================================================================
