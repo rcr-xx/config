@@ -138,7 +138,7 @@ noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
 map <silent> <F9> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" " sur pression de la touche F3 highlight les charactères qui dépassent la 80ème colonne
 map <M-Left> gT
 map <M-Right> gt
-map <M-Up> :tabnew<CR>:tabm<CR>:e 
+map <M-Up> :tabnew<CR>:tabm<CR>:e
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
 command! -nargs=+ G :tabe | :GitGrep <q-args>
 
@@ -173,7 +173,6 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 " Installer vimball
 "   1. vim tail-03.vba
 "   2. :so %
-"   3. :q
 
 " ==> Zenburn :
 "    * Fonction : colorsheme
@@ -192,22 +191,28 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 "    * Fonction : Vérifie syntaxe python
 "    * URL : http://www.vim.org/scripts/script.php?script_id=2441
 "    * Installation :
-"         - Décompresser le plugin dans ~/.vim
-"    * Décompresser le plugin dans le répertoire ~/.vim/after/ftplugin/python
-"    * Ajouter dans le fichier .vimrc la ligne suivante : filetype plugin indent on
+"         - Décompresser le plugin dans le répertoire ~/.vim/after/ftplugin/python
+"         - Ajouter dans le fichier .vimrc la ligne suivante : filetype plugin indent on
 
 " ==> Align
 "    * Fonction : Alignement du texte
 "    * URL : http://www.vim.org/scripts/script.php?script_id=294
+
+" ==> NERDTree
+"    * Fonction : Exploreur de filesystem
+"    * URL : http://www.vim.org/scripts/script.php?script_id=1658
 "    * Installation :
-"         - $ vim Align.vba.gz
-"         - :so %
-"         - :q
+"         - Décompresser le plugin dans ~/.vim"
+
+" ==> NERDTree
+"    * Fonction : GetLatestVimScripts
+"    * URL : http://www.vim.org/scripts/script.php?script_id=642
+"
 
 " ===============================================================================================
 "                                     HELP
 " ===============================================================================================
-"
+
 " ==> TAG
 "   Tag stack
 "   * :tj / --> Recherche le tag après le /
