@@ -193,6 +193,11 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 "    * Installation :
 "         - Décompresser le plugin dans le répertoire ~/.vim/after/ftplugin/python
 "         - Ajouter dans le fichier .vimrc la ligne suivante : filetype plugin indent on
+"         OU
+"         - Récupérer et déposer la dernière version de pyflakes.vim (http://github.com/kevinw/pyflakes-vim)
+"           dans ~/.vim/after/ftplugin/python
+"         - Déposer la dernière version du module pyflakes (http://github.com/kevinw/pyflakes)
+"           dans /urs/lib/python2.6/dist_packages/ --> *** version plus rapide ***
 
 " ==> Align
 "    * Fonction : Alignement du texte
@@ -204,10 +209,17 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 "    * Installation :
 "         - Décompresser le plugin dans ~/.vim"
 
-" ==> NERDTree
-"    * Fonction : GetLatestVimScripts
+" ==> GetLatestVimScripts
+"    * Fonction : Mise à jour plugins vim
 "    * URL : http://www.vim.org/scripts/script.php?script_id=642
 "
+
+" ==> Git-vim
+"    * Fonction : Commandes git sous vim
+"    * URL : http://github.com/motemen/git-vim
+"    * Installation :
+"         - $ cd ~/.vim
+"         - $ git clone git://github.com/motemen/git-vim.git
 
 " ===============================================================================================
 "                                     HELP
