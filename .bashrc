@@ -85,6 +85,7 @@ alias gis='git status'
 alias gip='git format-patch'
 alias exp='cd ~/sandboxes/PvxCoreApplication; vi -c :Ex'
 alias scastor='ssh castor2'
+alias saube='ssh aube'
 alias sithaque='ssh rcr@192.168.2.21'
 alias terminator='terminator -mf'
 alias get_sql_backup="cd ~/download; scp castor2:/var/lib/postgresql/pgdump_provexi_prod.sql ."
