@@ -35,6 +35,7 @@ filetype plugin on
 filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 
+
 function! MyTabLine()
 	  let s = ''
 	  for i in range(tabpagenr('$'))
@@ -140,7 +141,7 @@ map <M-Left> gT
 map <M-Right> gt
 map <M-Up> :tabnew<CR>:tabm<CR>:e
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
-command! -nargs=+ G :tabe | :GitGrep <q-args>
+"command! -nargs=+ G :tabe | :GitGrep <q-args>
 
 noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
 noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
