@@ -1,6 +1,7 @@
-" ===========================================================================================
-"                          CONFIG POUR DEVELOPPEMENT PYTHON
-" ===========================================================================================
+" =========================================================================================== "
+"                          CONFIG POUR DEVELOPPEMENT PYTHON                                   "
+" =========================================================================================== "
+
 set nocompatible                 " Rend Vim non compatible avec Vi
 set shiftwidth=4                 " Nombre de caractère utilisé pour l'indentation
 set tabstop=4                    " Nombre d'espace par tab
@@ -26,15 +27,12 @@ set wildmode=list:longest        " Affiche une liste identique à la complétion
 set showtabline=2                " Affiche toujours les onglets
 set lcs:tab:>-,trail:.           " Affiche les tabs, les ' ' en fin de ligne et les \n
 set nu                           " Affiche les numéros de ligne
-
-syntax on         " Activation de la coloration syntaxique
+syntax on                        " Activation de la coloration syntaxique
 colorscheme zenburn
-
 filetype on                      " Detection to determine the type of the current file
 filetype plugin on
 filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
-
 
 function! MyTabLine()
 	  let s = ''
@@ -126,9 +124,10 @@ endfunction
 :com! -nargs=* Paste call Paste()
 
 
-" ===============================================================================================
-"                                      HOTKEYS
-" ===============================================================================================
+" =============================================================================================== "
+"                                  HOTKEYS                                                        "
+" =============================================================================================== "
+
 map <F2> :source ~/.vimrc<CR>    " Recharge configuration vim
 map <F3> :s/^/#<CR>    " Commente le bloc sélectionné
 map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
@@ -140,6 +139,7 @@ map <silent> <F9> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" " sur pression de la to
 map <M-Left> gT
 map <M-Right> gt
 map <M-Up> :tabnew<CR>:tabm<CR>:e
+map <M-Down> :tabnew<CR>:tabm<CR>:Git grep 
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
 "command! -nargs=+ G :tabe | :GitGrep <q-args>
 
@@ -161,19 +161,16 @@ imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR>
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
 
-" ===============================================================================================
-"                                      SETUP
-" ===============================================================================================
+" =============================================================================================== "
+"                                      SETUP                                                      "
+" =============================================================================================== "
+
 " sudo apt-get install vim-gnome
 
 
-" ===============================================================================================
-"                                      PLUGINS
-" ===============================================================================================
-"
-" Installer vimball
-"   1. vim tail-03.vba
-"   2. :so %
+" =============================================================================================== "
+"                                      PLUGINS                                                    "
+" =============================================================================================== "
 
 " ==> Zenburn :
 "    * Fonction : colorsheme
@@ -192,13 +189,20 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 "    * Fonction : Vérifie syntaxe python
 "    * URL : http://www.vim.org/scripts/script.php?script_id=2441
 "    * Installation :
-"         - Décompresser le plugin dans le répertoire ~/.vim/after/ftplugin/python
-"         - Ajouter dans le fichier .vimrc la ligne suivante : filetype plugin indent on
-"         OU
 "         - Récupérer et déposer la dernière version de pyflakes.vim (http://github.com/kevinw/pyflakes-vim)
 "           dans ~/.vim/after/ftplugin/python
 "         - Déposer la dernière version du module pyflakes (http://github.com/kevinw/pyflakes)
 "           dans /urs/lib/python2.6/dist_packages/ --> *** version plus rapide ***
+"         OU (moins performant)
+"         - Décompresser le plugin dans le répertoire ~/.vim/after/ftplugin/python
+"         - Ajouter dans le fichier .vimrc la ligne suivante : filetype plugin indent on
+
+" ==> Git-vim
+"    * Fonction : Commandes git sous vim
+"    * URL : git.jukie.net/git-vim.git
+"    * Installation :
+"         - $ cd ~/.vim
+"         - $ git clone git://git.jukie.net/git-vim.git
 
 " ==> Align
 "    * Fonction : Alignement du texte
@@ -210,23 +214,16 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 "    * Installation :
 "         - Décompresser le plugin dans ~/.vim"
 
-" ==> GetLatestVimScripts
-"    * Fonction : Mise à jour plugins vim
-"    * URL : http://www.vim.org/scripts/script.php?script_id=642
-"
 
-" ==> Git-vim
-"    * Fonction : Commandes git sous vim
-"    * URL : http://github.com/motemen/git-vim
-"    * Installation :
-"         - $ cd ~/.vim
-"         - $ git clone git://github.com/motemen/git-vim.git
-
-" ===============================================================================================
-"                                     HELP
-" ===============================================================================================
+" =============================================================================================== "
+"                                     HELP                                                        "
+" =============================================================================================== "
 
 " ==> TAG
 "   Tag stack
 "   * :tj / --> Recherche le tag après le /
 "   * :po --> Revenir à l'écran précédent
+
+" ==> Comment installer un vimball?
+"   1. vim tail-03.vba
+"   2. :so %
