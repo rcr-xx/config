@@ -92,9 +92,10 @@ set tabline=%!MyTabLine()
 set tag=~/sandboxes/PvxCoreApplication/tags
 let Tlist_Exit_OnlyWindow=1
 
-" Surligne les espaces de fin de ligne
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
+" Surligne les espaces de fin de ligne et ligne de + de 80 caractères
+highlight YellowOnRed ctermbg=red ctermfg=yellow
+match YellowOnRed /\%80v.\+/
+2match YellowOnRed /\s\+$/
 
 " Copier/coller avec souris
 function! Paste(...)
