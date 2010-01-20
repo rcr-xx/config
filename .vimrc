@@ -93,9 +93,10 @@ set tag=~/sandboxes/PvxCoreApplication/tags
 let Tlist_Exit_OnlyWindow=1
 
 " Surligne les espaces de fin de ligne et ligne de + de 80 caractères
-highlight YellowOnRed ctermbg=red ctermfg=yellow
-match YellowOnRed /\%80v.\+/
-2match YellowOnRed /\s\+$/
+highlight YellowFgOnRedBg ctermbg=red ctermfg=yellow
+highlight BlackBg ctermbg=black
+match BlackBg /\%80v.\+/
+2match YellowFgOnRedBg /\s\+$/
 
 " Copier/coller avec souris
 function! Paste(...)
@@ -132,7 +133,7 @@ endfunction
 map <F2> :source ~/.vimrc<CR>    " Recharge configuration vim
 map <F3> :s/^/#<CR>    " Commente le bloc sélectionné
 map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
-map <F5> :set paste!<Bar>set paste?<CR>
+"map <F5> :set paste!<Bar>set paste?<CR>
 map <F6> :set number!<Bar>set number?<CR>
 map <F7>  :%s/  *$//<CR>
 noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
@@ -214,6 +215,12 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 "    * URL : http://www.vim.org/scripts/script.php?script_id=1658
 "    * Installation :
 "         - Décompresser le plugin dans ~/.vim"
+
+" ==> Pep8
+"    * Fonction : Vérifie si code python respecte PEP8
+"    * URL : http://www.vim.org/scripts/script.php?script_id=2914
+"    * Installation :
+"         - Installer préalablement pep8.py : easy_install pep8
 
 
 " =============================================================================================== "
