@@ -140,7 +140,7 @@ noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
 map <silent> <F9> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" " sur pression de la touche F3 highlight les charactères qui dépassent la 80ème colonne
 map <M-Left> gT
 map <M-Right> gt
-map <M-Up> :tabnew<CR>:tabm<CR>:e
+map <M-Up> :tabnew<CR>:tabm<CR>:e 
 map <M-Down> :tabnew<CR>:tabm<CR>:Git grep 
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
 "command! -nargs=+ G :tabe | :GitGrep <q-args>
