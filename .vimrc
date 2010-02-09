@@ -83,6 +83,8 @@ function! MyTabLabel(n)
           break
         endif
     endfor
+    let tab_num = a:n - 1
+    let ret = '['.tab_num.'.'.ret.']'
     return ret
 	endfunction
 
@@ -141,7 +143,7 @@ map <silent> <F9> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" " sur pression de la to
 map <M-Left> gT
 map <M-Right> gt
 map <M-Up> :tabnew<CR>:tabm<CR>:e 
-map <M-Down> :tabnew<CR>:tabm<CR>:Git grep 
+map <M-Down> :tabnew<CR>:tabm<CR>:GitGrep 
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
 "command! -nargs=+ G :tabe | :GitGrep <q-args>
 
