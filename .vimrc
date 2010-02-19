@@ -27,6 +27,7 @@ set wildmode=list:longest        " Affiche une liste identique à la complétion
 set showtabline=2                " Affiche toujours les onglets
 set lcs:tab:>-,trail:.           " Affiche les tabs, les ' ' en fin de ligne et les \n
 set nu                           " Affiche les numéros de ligne
+set autowrite                    " Enregistre avant compilation, grep...
 syntax on                        " Activation de la coloration syntaxique
 colorscheme zenburn
 filetype on                      " Detection to determine the type of the current file
@@ -97,8 +98,8 @@ let Tlist_Exit_OnlyWindow=1
 " Surligne les espaces de fin de ligne et ligne de + de 80 caractères
 highlight YellowFgOnRedBg ctermbg=red ctermfg=yellow
 highlight BlackBg ctermbg=black
-match BlackBg /\%80v.\+/
-2match YellowFgOnRedBg /\s\+$/
+match YellowFgOnRedBg /\s\+$/
+"2match BlackBg /\%80v.\+/
 
 " Copier/coller avec souris
 function! Paste(...)
@@ -132,26 +133,6 @@ endfunction
 "                                  HOTKEYS                                                        "
 " =============================================================================================== "
 
-map <F2> :source ~/.vimrc<CR>    " Recharge configuration vim
-map <F3> :s/^/#<CR>    " Commente le bloc sélectionné
-map <F4> :s/^#//<CR>  " Décommente le bloc sélectionné
-"map <F5> :set paste!<Bar>set paste?<CR>
-map <F6> :set number!<Bar>set number?<CR>
-map <F7>  :%s/  *$//<CR>
-noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
-map <silent> <F9> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" " sur pression de la touche F3 highlight les charactères qui dépassent la 80ème colonne
-map <M-Left> gT
-map <M-Right> gt
-map <M-Up> :tabnew<CR>:tabm<CR>:e 
-map <M-Down> :tabnew<CR>:tabm<CR>:GitGrep 
-command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
-"command! -nargs=+ G :tabe | :GitGrep <q-args>
-
-noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
-noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
-noremap <M-K> <C-U>  " Déplace 1/2 écran vers le haut
-noremap <M-J> <C-D>  " Déplace 1/2 écran vers le bas
-
 imap ,ppr  from pprint import pprint<CR>pprint()<Esc>i
 imap ,pgr  print '\033[1;42m',  , '\033[1;m'<Esc>12hi
 imap ,pre  print '\033[1;41m',  , '\033[1;m'<Esc>12hi
@@ -163,6 +144,29 @@ imap ,pgr  print '\033[1;47m',  , '\033[1;m'<Esc>12hi
 imap ,pdb  import pdb; pdb.set_trace()
 imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
+
+"map <F1>
+map <F2> :s/^/#<CR>        " Commente le bloc sélectionné
+map <F3> :s/^#//<CR>       " Décommente le bloc sélectionné
+map <F7> :%s/  *$//<CR>    " Supprime les trailing whitespace
+map <F4> :tabdo :e!<CR>    " Recharge les onglets
+"map <F5>                  " Vérifie respect de PEP8
+map <silent> <F6> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" "highlight les charactères qui dépassent la 80ème colonne
+noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
+
+command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
+
+noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
+noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
+noremap <M-K> <C-U>  " Déplace 1/2 écran vers le haut
+noremap <M-J> <C-D>  " Déplace 1/2 écran vers le bas
+map <M-Left> gT
+map <M-Right> gt
+map <M-Down> :tabnew<CR>:tabm<CR>:e 
+map <M-Up> :tabnew<CR>:tabm<CR>:GitGrep 
+cmap gg :tabnew<CR>:GitGrep <CR>
+cmap gd :tabnew<CR>:GitDiff<CR><C-W>w:q<CR>
+cmap ReloadConfig :source ~/.vimrc<CR>
 
 
 " =============================================================================================== "
