@@ -150,6 +150,7 @@ map <F2> :s/^/#<CR>        " Commente le bloc sélectionné
 map <F3> :s/^#//<CR>       " Décommente le bloc sélectionné
 map <F7> :%s/  *$//<CR>    " Supprime les trailing whitespace
 map <F4> :tabdo :e!<CR>    " Recharge les onglets
+map <F12> :source ~/.vimrc<CR>:echo 'Config reloaded'<CR>
 "map <F5>                  " Vérifie respect de PEP8
 map <silent> <F6> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" "highlight les charactères qui dépassent la 80ème colonne
 noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
@@ -158,15 +159,31 @@ command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et 
 
 noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
 noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
-noremap <M-K> <C-U>  " Déplace 1/2 écran vers le haut
-noremap <M-J> <C-D>  " Déplace 1/2 écran vers le bas
+noremap <M-k> <C-U>  " Déplace 1/2 écran vers le haut
+noremap <M-j> <C-D>  " Déplace 1/2 écran vers le bas
+noremap <C-w> :tabclose!<CR>  " Ferme l'onglet courant
+noremap <C-t> :tabnew<CR>     " Ouvre nouvel onglet
 map <M-Left> gT
 map <M-Right> gt
-map <M-Down> :tabnew<CR>:tabm<CR>:e 
+map <M-Down> :tabnew<CR>:tabm<CR>:
 map <M-Up> :tabnew<CR>:tabm<CR>:GitGrep 
-cmap gg :tabnew<CR>:GitGrep <CR>
+cmap gg :tabnew<CR>:GitGrep 
 cmap gd :tabnew<CR>:GitDiff<CR><C-W>w:q<CR>
-cmap ReloadConfig :source ~/.vimrc<CR>
+
+
+function! GG(args)
+    execute 'tabnew'
+    call GitGrep(a:args)
+endfunction
+
+function! GD(args)
+    execute 'tabnew'
+    call GitDiff(a:args)
+    "execute 'exit'
+endfunction
+
+command! -nargs=* GG    call GG(<q-args>)
+command! -nargs=* -complete=customlist,ListGitCommits GD    call GD(<q-args>)
 
 
 " =============================================================================================== "
