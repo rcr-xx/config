@@ -149,35 +149,34 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 map <F2> :s/^/#<CR>        " Commente le bloc sélectionné
 map <F3> :s/^#//<CR>       " Décommente le bloc sélectionné
 map <F7> :%s/  *$//<CR>    " Supprime les trailing whitespace
-map <F4> :tabdo :e!<CR>    " Recharge les onglets
+map <F9> :tabdo :e!<CR>:echo 'Tabs reloded'<CR>
 map <F12> :source ~/.vimrc<CR>:echo 'Config reloaded'<CR>
 "map <F5>                  " Vérifie respect de PEP8
 map <silent> <F6> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" "highlight les charactères qui dépassent la 80ème colonne
 noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
-
-command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
-
-noremap <C-k> <C-E>  " Déplace 1/2 écran vers le haut
-noremap <C-j> <C-Y>  " Déplace 1/2 écran vers le bas
-noremap <M-k> <C-U>  " Déplace 1/2 écran vers le haut
-noremap <M-j> <C-D>  " Déplace 1/2 écran vers le bas
 noremap <C-w> :tabclose!<CR>  " Ferme l'onglet courant
 noremap <C-t> :tabnew<CR>     " Ouvre nouvel onglet
-map <M-Left> gT
-map <M-Right> gt
-map <M-Down> :tabnew<CR>:tabm<CR>:
-map <M-Up> :tabnew<CR>:tabm<CR>:GitGrep 
-cmap gg :tabnew<CR>:GitGrep 
-cmap gd :tabnew<CR>:GitDiff<CR><C-W>w:q<CR>
-
+noremap <C-Left> gT
+noremap <C-Right> gt
+noremap gg yiw:call GitGrepWordUnderCursor()<CR>
+command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
 
 function! GG(args)
     execute 'tabnew'
+    execute 'tabm'
     call GitGrep(a:args)
+endfunction
+
+function! GitGrepWordUnderCursor()
+    execute 'tabnew'
+    execute 'tabm'
+    let a = @
+    call GitGrep(a)
 endfunction
 
 function! GD(args)
     execute 'tabnew'
+    execute 'tabm'
     call GitDiff(a:args)
     "execute 'exit'
 endfunction
