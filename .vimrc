@@ -98,8 +98,9 @@ let Tlist_Exit_OnlyWindow=1
 " Surligne les espaces de fin de ligne et ligne de + de 80 caractères
 highlight YellowFgOnRedBg ctermbg=red ctermfg=yellow
 highlight BlackBg ctermbg=black
-match YellowFgOnRedBg /\s\+$/
-"2match BlackBg /\%80v.\+/
+highlight Bold cterm=bold
+match Bold /\%80v.\+/
+2match YellowFgOnRedBg /\s\+$/
 
 " Copier/coller avec souris
 function! Paste(...)
@@ -152,7 +153,7 @@ map <F7> :%s/  *$//<CR>    " Supprime les trailing whitespace
 map <F9> :tabdo :e!<CR>:echo 'Tabs reloded'<CR>
 map <F12> :source ~/.vimrc<CR>:echo 'Config reloaded'<CR>
 "map <F5>                  " Vérifie respect de PEP8
-map <silent> <F6> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" "highlight les charactères qui dépassent la 80ème colonne
+"map <silent> <F6> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" "highlight les charactères qui dépassent la 80ème colonne
 noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
 noremap <C-w> :tabclose!<CR>  " Ferme l'onglet courant
 noremap <C-t> :tabnew<CR>     " Ouvre nouvel onglet
