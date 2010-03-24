@@ -160,6 +160,7 @@ noremap <C-Left> gT
 noremap <C-Right> gt
 noremap gg yiw:call GitGrepWordUnderCursor()<CR>
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
+vmap ,sy :s/ *,/,/g \| '<,'>s/,  */, /g<CR>
 
 function! GG(args)
     execute 'tabnew'
