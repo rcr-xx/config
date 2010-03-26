@@ -155,13 +155,13 @@ map <F12> :source ~/.vimrc<CR>:echo 'Config reloaded'<CR>
 "map <F5>                  " Vérifie respect de PEP8
 "map <silent> <F6> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" "highlight les charactères qui dépassent la 80ème colonne
 noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
-noremap <C-w> :tabclose!<CR>  " Ferme l'onglet courant
-noremap <C-t> :tabnew<CR>     " Ouvre nouvel onglet
+noremap <C-X> :tabclose!<CR>  " Ferme l'onglet courant
+noremap <C-T> :tabnew<CR>:tabm<CR>     " Ouvre nouvel onglet
 noremap <C-Left> gT
 noremap <C-Right> gt
 noremap gg yiw:call GitGrepWordUnderCursor()<CR>
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
-vmap ,sy :s/ *,  */, /g \| '<,'>s/\(\[\\|{\\|(\) */\1/g \| '<,'>s/ *\(\]\\|}\\|)\)/\1/g<CR>
+vmap ,sy :s/ *,  */, /g \| '<,'>s/\(\[\\|{\\|(\) */\1/g \| '<,'>s/ *\(\]\\|}\\|)\)/\1/g \| '<,'>s/ *: */: /g \| '<,'>s/:\([^ ]\)/: \1/g<CR>
 
 function! GG(args)
     execute 'tabnew'
