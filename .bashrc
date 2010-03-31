@@ -106,6 +106,7 @@ alias clean_master='mv ~/master/patch/* ~/master/applied'
 alias clean_next='mv ~/next/patch/* ~/next/applied'
 alias ll_master='ll ~/master/patch'
 alias ll_next='ll ~/next/patch'
+alias push_local_config="cd ~; git push origin master"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
