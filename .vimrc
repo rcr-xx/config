@@ -91,6 +91,34 @@ function! MyTabLabel(n)
 
 set tabline=%!MyTabLine()
 
+python << EOF
+import vim
+import re
+def clean_syntax():
+    patterns = [
+        { 'regexp': ' *,  *',
+          'replace': r', '},
+        { 'regexp': ',([^ ])',
+          'replace': r', \1'},
+        { 'regexp': ' *: *',
+          'replace': r': '},
+        { 'regexp': ':([^ ])',
+          'replace': r': \1'},
+        { 'regexp': '(\[|{|\() *',
+          'replace': r'\1'},
+        { 'regexp': ' *(\]|}|\))',
+          'replace': r'\1'},
+        ]
+    r = vim.current.range
+    b = vim.current.buffer
+    for num_line in range(r.start, r.end+1):
+        for pattern in patterns:
+            b[num_line] = re.sub(
+                pattern['regexp'],
+                pattern['replace'],
+                b[num_line])
+EOF
+
 " Tag les classes de pvxcore
 set tag=~/sandboxes/PvxCoreApplication/tags
 let Tlist_Exit_OnlyWindow=1
@@ -146,22 +174,25 @@ imap ,pdb  import pdb; pdb.set_trace()
 imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
-"map <F1>
-map <F2> :s/^/#<CR>        " Commente le bloc sélectionné
-map <F3> :s/^#//<CR>       " Décommente le bloc sélectionné
-map <F7> :%s/  *$//<CR>    " Supprime les trailing whitespace
-map <F9> :tabdo :e!<CR>:echo 'Tabs reloded'<CR>
-map <F12> :source ~/.vimrc<CR>:echo 'Config reloaded'<CR>
-"map <F5>                  " Vérifie respect de PEP8
-"map <silent> <F6> "<Esc>:match ErrorMsg '\%>80v.\+'<CR>" "highlight les charactères qui dépassent la 80ème colonne
-noremap <silent> <F8> :TlistToggle<CR>  " Open class navigator
+"noremap <F1>                                                 " Aide Gnome
+map <F2> :s/^/#<CR>                                           " Commente le bloc sélectionné
+map <F3> :s/^#//<CR>                                          " Décommente le bloc sélectionné
+"map <F4>                                                     " Free
+"map <F5>                                                     " Vérifie respect de PEP8
+map <F6> :python clean_syntax()<CR>:echo 'Syntax cleaned'<CR> " Rend code conforme à PEP8
+map <F7> :%s/  *$//<CR>:echo 'Trailing whitespace cleaned'    " Supprime les trailing whitespace
+noremap <silent> <F8> :TlistToggle<CR>                        " Affiche navigateur du fichier
+map <F9> :tabdo :e!<CR>:echo 'Tabs reloded'<CR>               " Recharge les onglets
+"map <F10>                                                    " Free
+"map <F11>                                                    " Agrandi la fenêtre
+map <F12> :source ~/.vimrc<CR>:echo 'Config reloaded'<CR>     " Recharge configuration vim
+
 noremap <C-X> :tabclose!<CR>  " Ferme l'onglet courant
 noremap <C-T> :tabnew<CR>:tabm<CR>     " Ouvre nouvel onglet
 noremap <C-h> gT
 noremap <C-l> gt
 noremap gg yiw:call GitGrepWordUnderCursor()<CR>
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
-vmap ,sy :s/ *,  */, /g \| '<,'>s/\(\[\\|{\\|(\) */\1/g \| '<,'>s/ *\(\]\\|}\\|)\)/\1/g \| '<,'>s/ *: */: /g \| '<,'>s/:\([^ ]\)/: \1/g<CR>
 vmap ," :s/"/'/g<CR>
 
 function! GG(args)
