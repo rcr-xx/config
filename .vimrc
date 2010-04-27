@@ -29,11 +29,15 @@ set lcs:tab:>-,trail:.           " Affiche les tabs, les ' ' en fin de ligne et 
 set nu                           " Affiche les numéros de ligne
 set autowrite                    " Enregistre avant compilation, grep...
 syntax on                        " Activation de la coloration syntaxique
-colorscheme zenburn
+colorscheme zenburn              " Thème vim
 filetype on                      " Detection to determine the type of the current file
-filetype plugin on
+filetype plugin on               " For plugin Pyflakes
 filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
+highlight YellowFgOnRedBg ctermbg=red ctermfg=yellow  " Couleur de surlignement
+highlight Bold cterm=bold        " Affiche en gras
+match Bold /\%80v.\+/            " Surligne lignes de + de 80 caractères
+2match YellowFgOnRedBg /\s\+$/   " Surligne les espaces de fin de ligne
 
 function! MyTabLine()
 	  let s = ''
@@ -126,13 +130,6 @@ EOF
 " Tag les classes de pvxcore
 set tag=~/sandboxes/PvxCoreApplication/tags
 let Tlist_Exit_OnlyWindow=1
-
-" Surligne les espaces de fin de ligne et ligne de + de 80 caractères
-highlight YellowFgOnRedBg ctermbg=red ctermfg=yellow
-highlight BlackBg ctermbg=black
-highlight Bold cterm=bold
-match Bold /\%80v.\+/
-2match YellowFgOnRedBg /\s\+$/
 
 " Copier/coller avec souris
 function! Paste(...)
