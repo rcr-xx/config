@@ -96,18 +96,22 @@ import vim
 import re
 def clean_syntax():
     patterns = [
-        { 'regexp': ' *,  *',
-          'replace': r', '},
-        { 'regexp': ',([^ ])',
-          'replace': r', \1'},
-        { 'regexp': ' *: *',
-          'replace': r': '},
-        { 'regexp': ':([^ ])',
-          'replace': r': \1'},
-        { 'regexp': '(\[|{|\() *',
-          'replace': r'\1'},
-        { 'regexp': ' *(\]|}|\))',
-          'replace': r'\1'},
+        {'regexp': ' *,',
+         'replace': r','},
+        {'regexp': ',  *',
+         'replace': r', '},
+        {'regexp': ',([^ ])',
+         'replace': r', \1'},
+        {'regexp': ' *: *',
+         'replace': r': '},
+        {'regexp': ':([^ ])',
+         'replace': r': \1'},
+        {'regexp': '(\[|{|\() *',
+         'replace': r'\1'},
+        {'regexp': '([^ ]) *(\]|}|\))',
+         'replace': r'\1\2'},
+        {'regexp': '  *$',
+         'replace': r''},
         ]
     r = vim.current.range
     b = vim.current.buffer
