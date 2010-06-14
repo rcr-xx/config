@@ -175,18 +175,18 @@ imap ,pdb  import pdb; pdb.set_trace()
 imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
-"noremap <F1>                                                 " Aide Gnome
-map <F2> :s/^/#<CR>                                           " Commente le bloc sélectionné
-map <F3> :s/^#//<CR>                                          " Décommente le bloc sélectionné
-"map <F4>                                                     " Free
-"map <F5>                                                     " Vérifie respect de PEP8
-map <F6> :python clean_syntax()<CR>:echo 'Syntax cleaned'<CR> " Rend code conforme à PEP8
-map <F7> :%s/  *$//<CR>:echo 'Trailing whitespace cleaned'    " Supprime les trailing whitespace
-noremap <silent> <F8> :TlistToggle<CR>                        " Affiche navigateur du fichier
-map <F9> :tabdo :e!<CR>:echo 'Tabs reloded'<CR>               " Recharge les onglets
-"map <F10>                                                    " Free
-"map <F11>                                                    " Agrandi la fenêtre
-map <F12> :source ~/.vimrc<CR>:echo 'Config reloaded'<CR>     " Recharge configuration vim
+"    <F1>                                                               " Aide Gnome
+map  <F2> :s/^/#<CR>                                                    " Commente le bloc sélectionné
+map  <F3> :s/^#//<CR>                                                   " Décommente le bloc sélectionné
+"map <F4>                                                               " Free
+"map <F5>                                                               " Vérifie respect de PEP8
+map  <F6> :python clean_syntax()<CR>: echo '!!! Syntax cleaned !!!'<CR> " Rend code conforme à PEP8
+map  <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR> " Supprime les trailing whitespace
+noremap <silent> <F8> :TlistToggle<CR>                                  " Affiche navigateur du fichier
+map  <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                " Recharge les onglets
+"    <F10>                                                              " Free
+"    <F11>                                                              " Agrandi la fenêtre
+map  <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>      " Recharge configuration vim
 
 noremap <C-X> :tabclose!<CR>  " Ferme l'onglet courant
 noremap <C-T> :tabnew<CR>:tabm<CR>     " Ouvre nouvel onglet
@@ -246,15 +246,9 @@ command! -nargs=* -complete=customlist,ListGitCommits GD    call GD(<q-args>)
 
 " ==> Pyflakes
 "    * Fonction : Vérifie syntaxe python
-"    * URL : http://www.vim.org/scripts/script.php?script_id=2441
+"    * URL : http://github.com/kevinw/pyflakes-vim
 "    * Installation :
-"         - Récupérer et déposer la dernière version de pyflakes.vim (http://github.com/kevinw/pyflakes-vim)
-"           dans ~/.vim/after/ftplugin/python
-"         - Déposer la dernière version du module pyflakes (http://github.com/kevinw/pyflakes)
-"           dans /urs/lib/python2.6/dist_packages/ --> *** version plus rapide ***
-"         OU (moins performant)
-"         - Décompresser le plugin dans le répertoire ~/.vim/after/ftplugin/python
-"         - Ajouter dans le fichier .vimrc la ligne suivante : filetype plugin indent on
+"         - Récupérer et dézipper dans ~/.vim/after/ftplugin/python
 
 " ==> Git-vim
 "    * Fonction : Commandes git sous vim
