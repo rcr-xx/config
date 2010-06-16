@@ -38,7 +38,7 @@ highlight YellowFgOnRedBg ctermbg=red ctermfg=yellow  " Couleur de surlignement
 highlight Bold cterm=bold        " Affiche en gras
 match Bold /\%80v.\+/            " Surligne lignes de + de 80 caractères
 2match YellowFgOnRedBg /\s\+$/   " Surligne les espaces de fin de ligne
-let g:pydiction_location = '/home/rcr/.vim/ftplugin/pydiction-1.2/complete-dict'
+let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
 
 function! MyTabLine()
 	  let s = ''
