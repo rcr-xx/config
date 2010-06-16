@@ -38,6 +38,7 @@ highlight YellowFgOnRedBg ctermbg=red ctermfg=yellow  " Couleur de surlignement
 highlight Bold cterm=bold        " Affiche en gras
 match Bold /\%80v.\+/            " Surligne lignes de + de 80 caractères
 2match YellowFgOnRedBg /\s\+$/   " Surligne les espaces de fin de ligne
+let g:pydiction_location = '/home/rcr/.vim/ftplugin/pydiction-1.2/complete-dict'
 
 function! MyTabLine()
 	  let s = ''
@@ -176,17 +177,17 @@ imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR>
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
 "    <F1>                                                               " Aide Gnome
-map  <F2> :s/^/#<CR>                                                    " Commente le bloc sélectionné
-map  <F3> :s/^#//<CR>                                                   " Décommente le bloc sélectionné
+map! <F2> <ESC>:s/^/#<CR>                                                    " Commente le bloc sélectionné
+map! <F3> <ESC>:s/^#//<CR>                                                   " Décommente le bloc sélectionné
 "map <F4>                                                               " Free
 "map <F5>                                                               " Vérifie respect de PEP8
-map  <F6> :python clean_syntax()<CR>: echo '!!! Syntax cleaned !!!'<CR> " Rend code conforme à PEP8
-map  <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR> " Supprime les trailing whitespace
+map!  <F6> <ESC>:python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR> " Rend code conforme à PEP8
+map!  <F7> <ESC>:%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR> " Supprime les trailing whitespace
 noremap <silent> <F8> :TlistToggle<CR>                                  " Affiche navigateur du fichier
-map  <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                " Recharge les onglets
+map!  <F9> <ESC>:tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                " Recharge les onglets
 "    <F10>                                                              " Free
 "    <F11>                                                              " Agrandi la fenêtre
-map  <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>      " Recharge configuration vim
+map! <F12> <ESC>:source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>      " Recharge configuration vim
 
 noremap <C-X> :tabclose!<CR>  " Ferme l'onglet courant
 noremap <C-T> :tabnew<CR>:tabm<CR>     " Ouvre nouvel onglet
