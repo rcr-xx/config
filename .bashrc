@@ -91,7 +91,8 @@ alias gidc='git diff --check'
 alias exp='cd ~/sandboxes/PvxCoreApplication; vi -c :Ex'
 alias scastor='ssh castor2'
 alias saube='ssh aube'
-alias sithaque='ssh rcr@192.168.2.21'
+alias sithaque='ssh ithaque'
+alias spollux='ssh pollux'
 alias terminator='terminator -mf'
 alias get_sql_backup="cd ~/download; scp castor2:/var/lib/postgresql/pgdump_provexi_prod.sql ."
 alias del_pyc='find ~/sandboxes/PvxCoreApplication -name "*.pyc" -exec rm {}  \;'
@@ -107,6 +108,10 @@ alias clean_next='mv ~/next/patch/* ~/next/applied'
 alias ll_master='ll ~/master/patch'
 alias ll_next='ll ~/next/patch'
 alias push_local_config="cd ~; git push origin master"
+alias tail_prod="saube 'tail -f -n 40 /var/pvx/zope212/zeo-client0/log/event.log' | ccze"
+#alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A"
+alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |lwatch -i-"
+alias tail_ith_select="sithaque 'sudo tail -f -n 200 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A |grep -i select"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
