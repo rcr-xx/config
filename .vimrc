@@ -188,7 +188,7 @@ map  <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                " Rechar
 "    <F11>                                                              " Agrandi la fenêtre
 map <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>      " Recharge configuration vim
 
-noremap <C-X> :tabclose!<CR>  " Ferme l'onglet courant
+noremap <C-W> :tabclose!<CR>  " Ferme l'onglet courant
 noremap <C-T> :tabnew<CR>:tabm<CR>     " Ouvre nouvel onglet
 noremap <C-h> gT
 noremap <C-l> gt
@@ -224,7 +224,7 @@ command! -nargs=* -complete=customlist,ListGitCommits GD    call GD(<q-args>)
 "                                      SETUP                                                      "
 " =============================================================================================== "
 
-" sudo apt-get install vim-gnome
+" sudo apt-get install vim-gnome exuberant-ctags
 
 
 " =============================================================================================== "
@@ -246,9 +246,9 @@ command! -nargs=* -complete=customlist,ListGitCommits GD    call GD(<q-args>)
 
 " ==> Pyflakes
 "    * Fonction : Vérifie syntaxe python
-"    * URL : http://github.com/kevinw/pyflakes-vim
+"    * URL : www.vim.org/scripts/script.php?script_id=2441
 "    * Installation :
-"         - Récupérer et dézipper dans ~/.vim/after/ftplugin/python
+"         - Récupérer et dézipper dans ~/.vim/ftplugin/python
 
 " ==> Git-vim
 "    * Fonction : Commandes git sous vim

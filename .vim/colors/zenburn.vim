@@ -120,8 +120,7 @@ hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
 hi Folded          guifg=#93b3a3 guibg=#3f4040
 hi Function        guifg=#efef8f
 hi Identifier      guifg=#efdcbc
-hi IncSearch       guifg=#385f38 guibg=#f8f893
-hi Search          guifg=#385f38 guibg=#f8f893
+hi IncSearch       guibg=#f8f893 guifg=#385f38
 hi Keyword         guifg=#f0dfaf gui=bold
 hi Label           guifg=#dfcfaf gui=underline
 hi LineNr          guifg=#9fafaf guibg=#262626
@@ -134,6 +133,7 @@ hi PreCondit       guifg=#dfaf8f gui=bold
 hi PreProc         guifg=#ffcfaf gui=bold
 hi Question        guifg=#ffffff gui=bold
 hi Repeat          guifg=#ffd7a7 gui=bold
+hi Search          guifg=#ffffe0 guibg=#284f28
 hi SpecialChar     guifg=#dca3a3 gui=bold
 hi SpecialComment  guifg=#82a282 gui=bold
 hi Special         guifg=#cfbfaf
@@ -183,8 +183,7 @@ if &t_Co > 255
     hi Folded          ctermfg=109   ctermbg=238
     hi Function        ctermfg=228
     hi Identifier      ctermfg=223
-    hi IncSearch       ctermfg=124   ctermbg=228
-    hi Search          ctermfg=124   ctermbg=228
+    hi IncSearch       ctermbg=228   ctermfg=238
     hi Keyword         ctermfg=223   cterm=bold
     hi Label           ctermfg=187   cterm=underline
     hi LineNr          ctermfg=248   ctermbg=235
@@ -197,6 +196,7 @@ if &t_Co > 255
     hi PreProc         ctermfg=223   cterm=bold
     hi Question        ctermfg=15    cterm=bold
     hi Repeat          ctermfg=223   cterm=bold
+    hi Search          ctermfg=230   ctermbg=236
     hi SpecialChar     ctermfg=181   cterm=bold
     hi SpecialComment  ctermfg=108   cterm=bold
     hi Special         ctermfg=181
@@ -247,7 +247,7 @@ if &t_Co > 255
         hi folded          ctermbg=238
         hi incsearch       ctermbg=228
         hi linenr          ctermbg=238
-        hi search          ctermbg=228
+        hi search          ctermbg=238
         hi statement       ctermbg=237
         hi statusline      ctermbg=144
         hi statuslinenc    ctermbg=108

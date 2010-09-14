@@ -71,7 +71,7 @@ alias pvxcore='cd ~/sandboxes/PvxCoreApplication/'
 alias pvxcore_master='cd ~/master/PvxCoreApplication'
 alias pvxcore_next='cd ~/next/PvxCoreApplication'
 alias pvxlib='cd ~/zope212/lib/python2.5/site-packages'
-alias runzope='cd ~/zope212/plateforme.provexi.fr; ./bin/runzope'
+alias runzope='cd ~/zope212/zope-server; ./bin/runzope'
 alias epicurom='cd ~/sandboxes/epicurom'
 alias runepicurom='~/bin/google_appengine/dev_appserver.py ~/sandboxes/epicurom/'
 alias gig='git grep'
@@ -112,6 +112,7 @@ alias tail_prod="saube 'tail -f -n 40 /var/pvx/zope212/zeo-client0/log/event.log
 #alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A"
 alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |lwatch -i-"
 alias tail_ith_select="sithaque 'sudo tail -f -n 200 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A |grep -i select"
+alias create_http_server="python -m SimpleHTTPServer 9900"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
