@@ -224,7 +224,29 @@ command! -nargs=* -complete=customlist,ListGitCommits GD    call GD(<q-args>)
 "                                      SETUP                                                      "
 " =============================================================================================== "
 
+" ==> A partir des paquets
 " sudo apt-get install vim-gnome exuberant-ctags
+"
+" ==> A partir du code source
+" sudo apt-get build-dep vim-gnome
+" hg clone https://vim.googlecode.com/hg/ vim
+" cd vim/src
+" ./configure \
+"   --enable-pythoninterp=yes \
+"   --enable-python3interp=yes \
+"   --enable-rubyinterp \
+"   --enable-perlinterp=yes \
+"   --enable-tclinterp \
+"   --enable-cscope \
+"   --enable-sniff \
+"   --enable-multibyte \
+"   --enable-gtk2-check=yes \
+"   --enable-gui=auto \
+"   --enable-fontset \
+"   --with-x \
+"   --with-features=huge
+" make
+" make install
 
 
 " =============================================================================================== "
