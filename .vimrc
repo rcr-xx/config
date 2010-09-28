@@ -45,9 +45,9 @@ function! MyTabLine()
 	  for i in range(tabpagenr('$'))
 	    " select the highlighting
 	    if i + 1 == tabpagenr()
-	      let s .= '%#errorMsg#'
+	      let s .= '%#TabSelected#'
 	    else
-	      let s .= '%#Tab#'
+	      let s .= '%#LineNr#'
 	    endif
 	    " set the tab page number (for mouse clicks)
 	    let s .= '%' . (i + 1) . 'T'

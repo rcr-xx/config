@@ -93,6 +93,8 @@ alias scastor='ssh castor2'
 alias saube='ssh aube'
 alias sithaque='ssh ithaque'
 alias spollux='ssh pollux'
+alias sorient='ssh orient'
+alias stemple='ssh temple'
 alias terminator='terminator -mf'
 alias get_sql_backup="cd ~/download; scp castor2:/var/lib/postgresql/pgdump_provexi_prod.sql ."
 alias del_pyc='find ~/sandboxes/PvxCoreApplication -name "*.pyc" -exec rm {}  \;'
@@ -113,6 +115,7 @@ alias tail_prod="saube 'tail -f -n 40 /var/pvx/zope212/zeo-client0/log/event.log
 alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |lwatch -i-"
 alias tail_ith_select="sithaque 'sudo tail -f -n 200 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A |grep -i select"
 alias create_http_server="python -m SimpleHTTPServer 9900"
+alias update_doc="pvxcore; cd doc; make html"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -132,3 +135,7 @@ fi
 
 export MOZ_NO_REMOTE=1
 #export PYTHONSTARTUP=/home/rom/.config/pythonConfig.py
+export PVX_PATH=~/zope212 PVX_PYTHON_VERSION=2.6 PVX_ZOPE_PKG=Zope-2.12-20090317 PVX_ITOOLS_PKG=itools-0.50.5
+export PVX_DOWNLOAD=/download PVX_PYTHON=/bin/python PVX_PYTHON_LIB=/lib/python PVX_ZOPE_BIN=/bin
+export PVX_PATH=~/zope212 PVX_PYTHON_VERSION=2.6 PVX_ZOPE_PKG=Zope-2.12-20090317 PVX_ITOOLS_PKG=itools-0.50.5\nexport PVX_DOWNLOAD=/download PVX_PYTHON=/bin/python PVX_PYTHON_LIB=/lib/python PVX_ZOPE_BIN=/bin
+export PVX_ZOPE_INSTANCE=/zeo-client0 PVX_VAR=/zeo-server/var PVX_SANDBOX=/sandboxes/ PVX_ZEO_PORT=8100
