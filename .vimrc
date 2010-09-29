@@ -34,10 +34,8 @@ filetype on                      " Detection to determine the type of the curren
 filetype plugin on               " For plugin Pyflakes
 filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
-highlight YellowFgOnRedBg ctermbg=red ctermfg=yellow  " Couleur de surlignement
-highlight Bold cterm=bold        " Affiche en gras
-match Bold /\%80v.\+/            " Surligne lignes de + de 80 caractères
-2match YellowFgOnRedBg /\s\+$/   " Surligne les espaces de fin de ligne
+match LineTooLong /\%80v.\+/            " Surligne lignes de + de 80 caractères
+2match TrailingWhitespace /\s\+$/   " Surligne les espaces de fin de ligne
 let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
 
 function! MyTabLine()
@@ -47,7 +45,7 @@ function! MyTabLine()
 	    if i + 1 == tabpagenr()
 	      let s .= '%#TabSelected#'
 	    else
-	      let s .= '%#LineNr#'
+	      let s .= '%#TabNotSelected#'
 	    endif
 	    " set the tab page number (for mouse clicks)
 	    let s .= '%' . (i + 1) . 'T'
@@ -194,6 +192,7 @@ noremap <C-h> gT
 noremap <C-l> gt
 noremap gg yiw:call GitGrepWordUnderCursor()<CR>
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
+command! Color :source $VIMRUNTIME/syntax/hitest.vim
 vmap ," :s/"/'/g<CR>
 
 function! GG(args)
