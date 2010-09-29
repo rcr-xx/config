@@ -29,13 +29,11 @@ set lcs:tab:>-,trail:.           " Affiche les tabs, les ' ' en fin de ligne et 
 set nu                           " Affiche les numéros de ligne
 set autowrite                    " Enregistre avant compilation, grep...
 syntax on                        " Activation de la coloration syntaxique
-colorscheme zenburn              " Thème vim
+colorscheme romanocry            " Thème vim
 filetype on                      " Detection to determine the type of the current file
 filetype plugin on               " For plugin Pyflakes
 filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
-match LineTooLong /\%80v.\+/            " Surligne lignes de + de 80 caractères
-2match TrailingWhitespace /\s\+$/   " Surligne les espaces de fin de ligne
 let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
 
 function! MyTabLine()

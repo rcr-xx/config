@@ -8,8 +8,6 @@ if exists("syntax_on")
 endif
 let g:colors_name="romanocry"
 
-match LineTooLong /\%80v.\+/        " Surligne lignes de + de 80 caractères
-2match TrailingWhitespace /\s\+$/   " Surligne les espaces de fin de ligne
 
 hi Comment          ctermfg=4
 
@@ -44,3 +42,7 @@ hi SpellBad         ctermfg=232   ctermbg=red   cterm=bold
 
 hi TrailingWhitespace             ctermbg=red
 hi LineTooLong                                 cterm=bold
+
+match LineTooLong /\%80v.\+/        " Surligne lignes de + de 80 caractères
+2match TrailingWhitespace /\s\+$/   " Surligne les espaces de fin de ligne
+
