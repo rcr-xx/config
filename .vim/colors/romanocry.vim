@@ -26,14 +26,14 @@ hi TabSelected      ctermfg=238   ctermbg=186   cterm=bold
 hi TabNotSelected   ctermfg=186   ctermbg=238   cterm=bold
 
 hi String           ctermfg=22                  cterm=none
-hi Conditional      ctermfg=94                  cterm=bold
+hi Conditional      ctermfg=94                  cterm=none
 hi Function                       ctermfg=none  cterm=none
-hi Operator         ctermfg=94                  cterm=bold
-hi Statement        ctermfg=94                  cterm=bold
-hi KeyWord          ctermfg=94                  cterm=bold
-hi Typedef          ctermfg=94                  cterm=bold
-hi PreProc          ctermfg=94                  cterm=bold
-hi Number           ctermfg=5                 cterm=none
+hi Operator         ctermfg=94                  cterm=none
+hi Statement        ctermfg=94                  cterm=none
+hi KeyWord          ctermfg=94                  cterm=none
+hi Typedef          ctermfg=94                  cterm=none
+hi PreProc          ctermfg=94                  cterm=none
+hi Number           ctermfg=5                   cterm=none
 
 hi vertsplit        ctermbg=red
 hi pythonSpaceError ctermbg=red
