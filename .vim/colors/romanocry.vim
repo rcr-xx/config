@@ -1,14 +1,13 @@
 " Vim color file
 
-set background=light
+set bg=light
 hi clear
 if exists("syntax_on")
     syntax reset
-    hi clear
 endif
 let g:colors_name="romanocry"
 
-hi Comment          ctermfg=4
+hi Comment          ctermfg=4                   cterm=none
 
 hi ErrorMsg         ctermfg=229   ctermbg=236   cterm=bold
 hi Error            ctermfg=229   ctermbg=236   cterm=bold
@@ -24,14 +23,15 @@ hi TabLineFill      ctermfg=186   ctermbg=241   cterm=none
 hi TabSelected      ctermfg=186   ctermbg=244   cterm=bold
 hi TabNotSelected   ctermfg=186   ctermbg=241   cterm=bold
 
-hi String           ctermfg=22                  cterm=none
-hi Conditional      ctermfg=94                  cterm=none
+hi String           ctermfg=2                   cterm=none
+hi Type             ctermfg=2                   cterm=none
+hi Conditional      ctermfg=130                 cterm=none
 hi Function                       ctermfg=none  cterm=none
-hi Operator         ctermfg=94                  cterm=none
-hi Statement        ctermfg=94                  cterm=none
-hi KeyWord          ctermfg=94                  cterm=none
-hi Typedef          ctermfg=94                  cterm=none
-hi PreProc          ctermfg=94                  cterm=none
+hi Operator         ctermfg=130                 cterm=none
+hi Statement        ctermfg=130                 cterm=none
+hi KeyWord          ctermfg=130                 cterm=none
+hi Typedef          ctermfg=130                 cterm=none
+hi PreProc          ctermfg=130                 cterm=none
 hi Number           ctermfg=5                   cterm=none
 
 hi vertsplit        ctermbg=red
