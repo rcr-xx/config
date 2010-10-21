@@ -18,7 +18,7 @@ set wrap                         " Si ligne trop longue se poursuit sur ligne su
 set incsearch                    " Montre correspondance partielle du motif de recherche
 set hlsearch                     " Surligne les occurrences de la chaîne recherchée
 set ignorecase                   " Ignore la casse dans les motifs de recherche
-set mouse=a                      " Activation de la souris
+set mouse=v                      " Activation de la souris
 set cursorline                   " Soulignement de la ligne courante
 set t_Co=256e                    " Passe en 256 couleurs
 set laststatus=2                 " Afficher en permanence la barre d'état (en plus de la barre de commande)
@@ -142,7 +142,6 @@ function! Paste(...)
             exe ':set formatoptions='.b:fo
             if b:ai == 1
                 exe ':set autoindent'
-            endif
             if b:si == 1
                 exe ':set smartindent'
             endif
@@ -168,12 +167,14 @@ imap ,pma  print '\033[1;45m',  , '\033[1;m'<Esc>12hi
 imap ,pcy  print '\033[1;46m',  , '\033[1;m'<Esc>12hi
 imap ,pgr  print '\033[1;47m',  , '\033[1;m'<Esc>12hi
 imap ,pdb  import pdb; pdb.set_trace()
+map  ,try  <Esc>otry:<Esc>oexcept:<ESC>oimport pdb; pdb.set_trace()<ESC>kkkddp>>j<<
+map  ,dtr <Esc>dd<<jdddd
 imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
 "    <F1>                                                               " Aide Gnome
-map  <F2> :s/^/#<CR>                                                    " Commente le bloc sélectionné
-map  <F3> :s/^#//<CR>                                                   " Décommente le bloc sélectionné
+map  <F2> :s/^#//<CR>                                                   " Décommente le bloc sélectionné
+map  <F3> :s/^/#<CR>                                                    " Commente le bloc sélectionné
 "map <F4>                                                               " Free
 "map <F5>                                                               " Vérifie respect de PEP8
 map  <F6> :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR> " Rend code conforme à PEP8
