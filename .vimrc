@@ -18,7 +18,7 @@ set wrap                         " Si ligne trop longue se poursuit sur ligne su
 set incsearch                    " Montre correspondance partielle du motif de recherche
 set hlsearch                     " Surligne les occurrences de la chaîne recherchée
 set ignorecase                   " Ignore la casse dans les motifs de recherche
-set mouse=v                      " Activation de la souris
+set mouse=av                      " Activation de la souris
 set cursorline                   " Soulignement de la ligne courante
 set t_Co=256e                    " Passe en 256 couleurs
 set laststatus=2                 " Afficher en permanence la barre d'état (en plus de la barre de commande)
@@ -172,20 +172,22 @@ map  ,dtr <Esc>dd<<jdddd
 imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
-"    <F1>                                                               " Aide Gnome
-map  <F2> :s/^#//<CR>                                                   " Décommente le bloc sélectionné
-map  <F3> :s/^/#<CR>                                                    " Commente le bloc sélectionné
-"map <F4>                                                               " Free
-"map <F5>                                                               " Vérifie respect de PEP8
-map  <F6> :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR> " Rend code conforme à PEP8
-map  <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR> " Supprime les trailing whitespace
-noremap <silent> <F8> :TlistToggle<CR>                                  " Affiche navigateur du fichier
-map  <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                " Recharge les onglets
-"    <F10>                                                              " Free
-"    <F11>                                                              " Agrandi la fenêtre
-map <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>      " Recharge configuration vim
+"       <F1>                                                                    " Aide Gnome
+map     <F2> :s/^/#<CR>^                                                        " Commente le bloc sélectionné
+imap    1;2Q <ESC>dd:s/^#//<CR>                                                 " Décommente le bloc sélectionné (1;2Q : hack pour <S-F2>)
+map     <F4> :s/\"/\'/g<CR><ESC>: echo'!!! " cleaned !!!'<CR>                   " Remplace double quote par simple quote
+"map    <F5> :s/^/#/<CR>                                                        " Commente le bloc sélectionné
+"map    <F5> :s/\"/\'/g<CR><ESC>: echo'!!! \" cleaned !!!'<CR>                  " Remplace double quote par simple quote
+map     <F6> :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR> " Rend code conforme à PEP8
+map     <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR>      " Supprime les trailing whitespace
+noremap <silent> <F8> :TlistToggle<CR>                                          " Affiche navigateur du fichier
+map     <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                     " Recharge les onglets
+"       <F10>                                                                   " Free
+"       <F11>                                                                   " Agrandi la fenêtre
+map     <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>           " Recharge configuration vim
 
-noremap <C-W> :tabclose!<CR>  " Ferme l'onglet courant
+map <C-F> <C-W>w
+map <C-W> :tabclose!<CR>  " Ferme l'onglet courant
 noremap <C-T> :tabnew<CR>:tabm<CR>     " Ouvre nouvel onglet
 noremap <C-h> gT
 noremap <C-l> gt
@@ -306,3 +308,6 @@ command! -nargs=* -complete=customlist,ListGitCommits GD    call GD(<q-args>)
 " ==> Comment installer un vimball?
 "   1. vim tail-03.vba
 "   2. :so %
+"
+" ==> Spilt and scroll simultaneously
+"  :set scb!      #scrollbind
