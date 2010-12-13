@@ -116,6 +116,7 @@ alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\
 alias tail_ith_select="sithaque 'sudo tail -f -n 200 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A |grep -i select"
 alias create_http_server="python -m SimpleHTTPServer 9900"
 alias update_doc="pvxcore; cd doc; make html"
+alias maj_wiki="ssh pvx@temple 'bash -c \"cd wiki.provexi.fr/PvxCoreApplication/; git fetch origin; git rebase origin/next\"'"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

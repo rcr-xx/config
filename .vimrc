@@ -176,8 +176,7 @@ imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getatt
 map     <F2> :s/^/#<CR>^                                                        " Commente le bloc sélectionné
 imap    1;2Q <ESC>dd:s/^#//<CR>                                                 " Décommente le bloc sélectionné (1;2Q : hack pour <S-F2>)
 map     <F4> :s/\"/\'/g<CR><ESC>: echo'!!! " cleaned !!!'<CR>                   " Remplace double quote par simple quote
-"map    <F5> :s/^/#/<CR>                                                        " Commente le bloc sélectionné
-"map    <F5> :s/\"/\'/g<CR><ESC>: echo'!!! \" cleaned !!!'<CR>                  " Remplace double quote par simple quote
+"map    <F5>
 map     <F6> :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR> " Rend code conforme à PEP8
 map     <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR>      " Supprime les trailing whitespace
 noremap <silent> <F8> :TlistToggle<CR>                                          " Affiche navigateur du fichier
