@@ -82,7 +82,8 @@ alias del_foncmen='rm ~/GED/foncmen*'
 alias apply_master='cd  ~/master/PvxCoreApplication; git am -3  ~/master/patch/*'
 alias apply_next='cd  ~/next/PvxCoreApplication; git am -3  ~/next/patch/*'
 alias push_master='git push origin master; clean_master'
-alias push_next='git push origin next; clean_next'
+alias maj_wiki="ssh pvx@temple 'bash -c \"cd wiki.provexi.fr/PvxCoreApplication/; git fetch origin; git rebase origin/next\"'"
+alias push_next='git push origin next; clean_next; maj_wiki;'
 alias clean_master='mv ~/master/patch/* ~/master/applied'
 alias clean_next='mv ~/next/patch/* ~/next/applied'
 alias ll_master='ll ~/master/patch'
@@ -91,7 +92,6 @@ alias pvx_tree='cd ~/sandboxes/PvxCoreApplication; vi -c :Ex'
 alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |lwatch -i-"
 alias tail_ith_select="sithaque 'sudo tail -f -n 200 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A |grep -i select"
 alias update_doc="pvxcore; cd doc; make html"
-alias maj_wiki="ssh pvx@temple 'bash -c \"cd wiki.provexi.fr/PvxCoreApplication/; git fetch origin; git rebase origin/next\"'"
 
 # GIT
 alias gig='git grep'

@@ -193,7 +193,7 @@ noremap <C-l> gt
 noremap gg yiw:call GitGrepWordUnderCursor()<CR>
 command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
 command! Color :source $VIMRUNTIME/syntax/hitest.vim
-vmap ," :s/"/'/g<CR>
+command! MajWiki :!cd ~/sandboxes/PvxCoreApplication/doc;make html
 
 function! GG(args)
     execute 'tabnew'
