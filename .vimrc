@@ -18,7 +18,7 @@ set wrap                         " Si ligne trop longue se poursuit sur ligne su
 set incsearch                    " Montre correspondance partielle du motif de recherche
 set hlsearch                     " Surligne les occurrences de la chaîne recherchée
 set ignorecase                   " Ignore la casse dans les motifs de recherche
-set mouse=av                      " Activation de la souris
+set mouse=a                      " Activation de la souris
 set cursorline                   " Soulignement de la ligne courante
 set t_Co=256e                    " Passe en 256 couleurs
 set laststatus=2                 " Afficher en permanence la barre d'état (en plus de la barre de commande)
@@ -35,6 +35,9 @@ filetype plugin on               " For plugin Pyflakes
 filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
+
+vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
 function! MyTabLine()
 	  let s = ''
