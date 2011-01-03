@@ -36,6 +36,7 @@ filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
 
+" Installer xclip pour le copier/coller
 vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
 nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
