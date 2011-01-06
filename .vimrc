@@ -36,10 +36,6 @@ filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
 
-" Installer xclip pour le copier/coller
-vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
-nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
-
 function! MyTabLine()
 	  let s = ''
 	  for i in range(tabpagenr('$'))
@@ -157,6 +153,29 @@ function! Paste(...)
 endfunction
 :com! -nargs=* Paste call Paste()
 
+" Grep dans un nouvel onglet
+function! GG(args)
+    execute 'tabnew'
+    execute 'tabm'
+    call GitGrep(a:args)
+endfunction
+
+" Grep du mot sous le curseur dans un nouvel onglet
+function! GitGrepWordUnderCursor()
+    execute 'tabnew'
+    execute 'tabm'
+    let a = @
+    call GitGrep(a)
+endfunction
+
+" GitDiff dans un nouvel onglet
+function! GD(args)
+    execute 'tabnew'
+    execute 'tabm'
+    call GitDiff(a:args)
+    "execute 'exit'
+endfunction
+
 
 " =============================================================================================== "
 "                                  HOTKEYS                                                        "
@@ -176,51 +195,30 @@ map  ,dtr <Esc>dd<<jdddd
 imap ,hea  # -*- coding: UTF-8 -*-<CR><CR># Import from standard library<CR><CR># Import from Zope<CR><CR># Import from PvxCoreApplication<CR><CR><CR>from Products.PvxCoreApplication.PvxFactory import parser_module_pour_creer_arbre_architectural<CR>parser_module_pour_creer_arbre_architectural(__name__)
 imap ,gpdb import pdb, sys; pdb.Pdb(stdin=getattr(sys,'__stdin__'),stdout=getattr(sys,'__stderr__')).set_trace(sys._getframe().f_back)
 
-"       <F1>                                                                    " Aide Gnome
-map     <F2> :s/^/#<CR>^                                                        " Commente le bloc sélectionné
-imap    1;2Q <ESC>dd:s/^#//<CR>                                                 " Décommente le bloc sélectionné (1;2Q : hack pour <S-F2>)
-map     <F4> :s/\"/\'/g<CR><ESC>: echo'!!! " cleaned !!!'<CR>                   " Remplace double quote par simple quote
-"map    <F5>
-map     <F6> :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR> " Rend code conforme à PEP8
-map     <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR>      " Supprime les trailing whitespace
-noremap <silent> <F8> :TlistToggle<CR>                                          " Affiche navigateur du fichier
-map     <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                     " Recharge les onglets
-"       <F10>                                                                   " Free
-"       <F11>                                                                   " Agrandi la fenêtre
-map     <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>           " Recharge configuration vim
-
-map <C-F> <C-W>w
-map <C-W> :tabclose!<CR>  " Ferme l'onglet courant
-noremap <C-T> :tabnew<CR>:tabm<CR>     " Ouvre nouvel onglet
-noremap <C-h> gT
-noremap <C-l> gt
-noremap gg yiw:call GitGrepWordUnderCursor()<CR>
-command! SQ silent :mksession! ~/.vim/session.vim | :wqa    " Met en session et quitte tous les buffers
-command! Color :source $VIMRUNTIME/syntax/hitest.vim
-command! MajWiki :!cd ~/sandboxes/PvxCoreApplication/doc;make html
-
-function! GG(args)
-    execute 'tabnew'
-    execute 'tabm'
-    call GitGrep(a:args)
-endfunction
-
-function! GitGrepWordUnderCursor()
-    execute 'tabnew'
-    execute 'tabm'
-    let a = @
-    call GitGrep(a)
-endfunction
-
-function! GD(args)
-    execute 'tabnew'
-    execute 'tabm'
-    call GitDiff(a:args)
-    "execute 'exit'
-endfunction
-
-command! -nargs=* GG    call GG(<q-args>)
-command! -nargs=* -complete=customlist,ListGitCommits GD    call GD(<q-args>)
+"          <F1>                                                                     " Aide Gnome
+map        <F2>  :s/^/#<CR>^                                                         " Commente le bloc sélectionné
+imap       1;2Q  <ESC>dd:s/^#//<CR>                                                  " Décommente le bloc sélectionné (1;2Q : hack pour <S-F2>)
+map        <F4>  :s/\"/\'/g<CR><ESC>: echo'!!! " cleaned !!!'<CR>                    " Remplace double quote par simple quote
+"map       <F5>                                                                     " Free
+map        <F6>  :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR>  " Rend code conforme à PEP8
+map        <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR>       " Supprime les trailing whitespace
+noremap    <silent> <F8> :TlistToggle<CR>                                           " Affiche navigateur du fichier
+map        <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                      " Recharge les onglets
+"          <F10>                                                                    " Free
+"          <F11>                                                                    " Agrandi la fenêtre
+map        <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>            " Recharge configuration vim
+map        <C-Q> :tabclose!<CR>                                                     " Ferme l'onglet courant
+noremap    <C-T> :tabnew<CR>:tabm<CR>                                               " Ouvre nouvel onglet
+noremap    <C-H> gT                                                                 " Passe sur l'onglet de gauche
+noremap    <C-L> gt                                                                 " Passe sur l'onglet de droite
+vmap       <C-C> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>  " Copier avec Ctrl-C
+nmap       <C-X> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p                                             " Coller avec Ctrl-X
+noremap    gg       yiw:call GitGrepWordUnderCursor()<CR>                         " Recherch le mot sous le curseur
+command!   SQ       silent :mksession! ~/.vim/session.vim | :wqa                  " Met en session et quitte tous les buffers
+command!   Color    :source $VIMRUNTIME/syntax/hitest.vim                         " Affiche les couleurs en fonction de la syntaxe
+command!   MajWiki  :!cd ~/sandboxes/PvxCoreApplication/doc;make html             " MAJ du wiki provexi en local
+command!   -nargs=*                                       GG  call GG(<q-args>)     " GitGrep dans un nouvel onglet
+command!   -nargs=* -complete=customlist,ListGitCommits   GD  call GD(<q-args>)     " GitDiff dans un nouvel onglet
 
 
 " =============================================================================================== "
@@ -251,6 +249,7 @@ command! -nargs=* -complete=customlist,ListGitCommits GD    call GD(<q-args>)
 " make
 " make install
 
+" Installer xclip pour permettre de faire des copier/coller avec Ctrl-C et Ctrl-V
 
 " =============================================================================================== "
 "                                      PLUGINS                                                    "
