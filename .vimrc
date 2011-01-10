@@ -59,8 +59,8 @@ noremap    <C-H> gT                                                             
 noremap    <C-L> gt                                                                  " Passe sur l'onglet de droite
 vmap       <C-C> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>  " Copier avec Ctrl-C
 nmap       <C-X> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p                                             " Coller avec Ctrl-X
-noremap    gg       yiw:call GitGrepWordUnderCursor()<CR>                            " Recherch le mot sous le curseur
-command!   SQ       silent :mksession! ~/.vim/session.vim | :wqa                     " Met en session et quitte tous les buffers
+noremap    gg       yiw:call GitGrepWordUnderCursor()<CR>                            " Recherche le mot sous le curseur
+command!   Session  silent :mksession! ~/.vim/session.vim | :wqa                     " Met en session et quitte tous les buffers
 command!   Color    :source $VIMRUNTIME/syntax/hitest.vim                            " Affiche les couleurs en fonction de la syntaxe
 command!   MajWiki  :!cd ~/sandboxes/PvxCoreApplication/doc;make html                " MAJ du wiki provexi en local
 command!   -nargs=*                                       GG  call GG(<q-args>)      " GitGrep dans un nouvel onglet
