@@ -36,35 +36,53 @@ filetype plugin indent on        " For plugin Pyflakes
 au BufRead *.stl so  $VIMRUNTIME/syntax/html.vim  " Coloration des fichiers STL
 let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
 
-
 " =============================================================================================== "
 "                                  HOTKEYS                                                        "
 " =============================================================================================== "
 
-"          <F1>                                                                      " Aide Gnome
-map        <F2>  :python python_comment()<CR>                                        " Commente le bloc sélectionné
-map        <F3>  :python python_uncomment()<CR>                                      " Décommente le bloc sélectionné
-map        <F4>  :s/\"/\'/g<CR><ESC>: echo'!!! " cleaned !!!'<CR>                    " Remplace double quote par simple quote
-"map       <F5>                                                                      " Free
-map        <F6>  :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR>  " Rend code conforme à PEP8
-map        <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR>        " Supprime les trailing whitespace
-noremap    <silent> <F8> :TlistToggle<CR>                                            " Affiche navigateur du fichier
-map        <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>                       " Recharge les onglets
-"          <F10>                                                                     " Free
-"          <F11>                                                                     " Agrandi la fenêtre
-map        <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>             " Recharge configuration vim
-map        <C-Q> :tabclose!<CR>                                                      " Ferme l'onglet courant
-noremap    <C-T> :tabnew<CR>:tabm<CR>                                                " Ouvre nouvel onglet
-noremap    <C-H> gT                                                                  " Passe sur l'onglet de gauche
-noremap    <C-L> gt                                                                  " Passe sur l'onglet de droite
-vmap       <C-C> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>  " Copier avec Ctrl-C
-nmap       <C-X> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p                                             " Coller avec Ctrl-X
-noremap    gg       yiw:call GitGrepWordUnderCursor()<CR>                            " Recherche le mot sous le curseur
-command!   Session  silent :mksession! ~/.vim/session.vim | :wqa                     " Met en session et quitte tous les buffers
-command!   Color    :source $VIMRUNTIME/syntax/hitest.vim                            " Affiche les couleurs en fonction de la syntaxe
-command!   MajWiki  :!cd ~/sandboxes/PvxCoreApplication/doc;make html                " MAJ du wiki provexi en local
-command!   -nargs=*                                       GG  call GG(<q-args>)      " GitGrep dans un nouvel onglet
-command!   -nargs=* -complete=customlist,ListGitCommits   GD  call GD(<q-args>)      " GitDiff dans un nouvel onglet
+"          <F1> Aide Gnome
+" Commente/Decommente le bloc sélectionné
+map        <F2>  :python python_comment()<CR>
+map        <F3>  :python python_uncomment()<CR>
+" Remplace double quote par simple quote
+map        <F4>  :s/\"/\'/g<CR><ESC>: echo'!!! " cleaned !!!'<CR>
+" Free     <F5>
+" Rend code conforme à PEP8
+map        <F6>  :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR>
+" Supprime les trailing whitespace
+map        <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR>
+" Affiche navigateur du fichier
+noremap    <silent> <F8> :TlistToggle<CR>
+" Recharge les onglets
+map        <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>
+"          <F10> Free
+"          <F11> Agrandi la fenêtre
+" Recharge configuration vim
+map        <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>
+" Ferme l'onglet courant
+map        <C-D> :tabclose!<CR>
+" Ouvre nouvel onglet
+noremap    <C-T> :tabnew<CR>:tabm<CR>
+" Passe sur l'onglet de gauche
+noremap    <C-H> gT
+" Passe sur l'onglet de droite
+noremap    <C-L> gt
+" Copier dans presse papier système
+vmap       <C-Y> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+" Coller presse papier système
+nmap       <C-P> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+" Recherche le mot sous le curseur
+noremap    gg       yiw:call GitGrepWordUnderCursor()<CR>
+" Met en session et quitte tous les buffers
+command!   Session  silent :mksession! ~/.vim/session.vim | :wqa
+" Affiche les couleurs en fonction de la syntaxe
+command!   Color    :source $VIMRUNTIME/syntax/hitest.vim
+" MAJ du wiki provexi en local
+command!   MajWiki  :!cd ~/sandboxes/PvxCoreApplication/doc;make html
+" GitGrep dans un nouvel onglet
+command!   -nargs=*                                       GG  call GG(<q-args>)
+" GitDiff dans un nouvel onglet
+command!   -nargs=* -complete=customlist,ListGitCommits   GD  call GD(<q-args>)
 imap       ,ppr  from pprint import pprint<CR>pprint()<Esc>i
 imap       ,pgr  print '\033[1;42m',  , '\033[1;m'<Esc>12hi
 imap       ,pre  print '\033[1;41m',  , '\033[1;m'<Esc>12hi
@@ -72,7 +90,6 @@ imap       ,pbr  print '\033[1;43m',  , '\033[1;m'<Esc>12hi
 imap       ,pbl  print '\033[1;44m',  , '\033[1;m'<Esc>12hi
 imap       ,pma  print '\033[1;45m',  , '\033[1;m'<Esc>12hi
 imap       ,pcy  print '\033[1;46m',  , '\033[1;m'<Esc>12hi
-imap       ,pgr  print '\033[1;47m',  , '\033[1;m'<Esc>12hi
 imap       ,pdb  import pdb; pdb.set_trace()
 map        ,try  <Esc>otry:<Esc>oexcept:<ESC>oimport pdb; pdb.set_trace()<ESC>kkkddp>>j<<
 map        ,dtr <Esc>dd<<jdddd
