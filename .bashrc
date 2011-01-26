@@ -92,6 +92,8 @@ alias pvx_tree='cd ~/sandboxes/PvxCoreApplication; vi -c :Ex'
 alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |lwatch -i-"
 alias tail_ith_select="sithaque 'sudo tail -f -n 200 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A |grep -i select"
 alias update_doc="pvxcore; cd doc; make html"
+alias maj_wiki="cd ~/sandboxes/PvxCoreApplication/doc;make html"
+alias maj_wiki_temple="ssh pvx@temple 'bash -c \"cd wiki.provexi.fr/PvxCoreApplication/; git fetch origin; git rebase origin/next; cd doc; make html;\"'"
 
 # GIT
 alias gig='git grep'
