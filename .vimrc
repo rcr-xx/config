@@ -44,18 +44,16 @@ let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
 " Commente/Decommente le bloc sélectionné
 map        <F2>  :python python_comment()<CR>
 map        <F3>  :python python_uncomment()<CR>
-" Remplace double quote par simple quote
-map        <F4>  :s/\"/\'/g<CR><ESC>: echo'!!! " cleaned !!!'<CR>
+" Free     <F4>  
 " Free     <F5>
-" Rend code conforme à PEP8
-map        <F6>  :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR>
+" Free     <F6>
 " Supprime les trailing whitespace
 map        <F7> :%s/  *$//<CR>:echo '!!! Trailing whitespace cleaned !!!'<CR>
 " Affiche navigateur du fichier
 noremap    <silent> <F8> :TlistToggle<CR>
+"          <F9> Free
 " Recharge les onglets
 map        <F9> :tabdo :e!<CR>:echo '!!! Tabs reloded !!!'<CR>
-"          <F10> Free
 "          <F11> Agrandi la fenêtre
 " Recharge configuration vim
 map        <F12> :source ~/.vimrc<CR>:echo '!!! Config reloaded !!!'<CR>
@@ -73,6 +71,10 @@ vmap       <C-Y> y:call system("xclip -i -selection clipboard", getreg("\""))<CR
 nmap       <C-P> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 " Recherche le mot sous le curseur
 noremap    gg       yiw:call GitGrepWordUnderCursor()<CR>
+" Remplace double quote par simple quote
+noremap    ""  :s/\"/\'/g<CR><ESC>: echo'!!! " cleaned !!!'<CR>
+" Rend code conforme à PEP8
+noremap    88 :python clean_syntax()<CR><ESC>: echo '!!! Syntax cleaned !!!'<CR>
 " Met en session et quitte tous les buffers
 command!   Session  silent :mksession! ~/.vim/session.vim | :wqa
 " Affiche les couleurs en fonction de la syntaxe
@@ -356,3 +358,6 @@ endfunction
 "
 " ==> Spilt and scroll simultaneously
 "  :set scb!      #scrollbind
+"
+" ==> Rechercher / remplacer dans un répertoire
+" find . -name "*.py" -exec sed -i 's/toto/tata/g' {}\;

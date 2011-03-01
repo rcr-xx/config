@@ -3,6 +3,7 @@
 # for examples
 
 export PATH=~/bin:$PATH
+#export PYTHONPATH=$PATHPYTHON:/home/rcr/sandboxes/PvxCoreApplication
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -74,6 +75,7 @@ alias saube='ssh aube'
 alias sithaque='ssh ithaque'
 alias spollux='ssh pollux'
 alias sorient='ssh orient'
+alias samance='ssh amance'
 alias stemple='ssh temple'
 alias get_sql_backup="cd ~/download; scp castor2:/var/lib/postgresql/pgdump_provexi_prod.sql ."
 alias del_pyc='find ~/sandboxes/PvxCoreApplication -name "*.pyc" -exec rm {}  \;'
@@ -82,8 +84,7 @@ alias del_foncmen='rm ~/GED/foncmen*'
 alias apply_master='cd  ~/master/PvxCoreApplication; git am -3  ~/master/patch/*'
 alias apply_next='cd  ~/next/PvxCoreApplication; git am -3  ~/next/patch/*'
 alias push_master='git push origin master; clean_master'
-alias maj_wiki="ssh pvx@temple 'bash -c \"cd wiki.provexi.fr/PvxCoreApplication/; git fetch origin; git rebase origin/next\"'"
-alias push_next='git push origin next; clean_next; maj_wiki;'
+alias push_next='git push origin next; clean_next; maj_wiki_temple;'
 alias clean_master='mv ~/master/patch/* ~/master/applied'
 alias clean_next='mv ~/next/patch/* ~/next/applied'
 alias ll_master='ll ~/master/patch'
@@ -91,8 +92,7 @@ alias ll_next='ll ~/next/patch'
 alias pvx_tree='cd ~/sandboxes/PvxCoreApplication; vi -c :Ex'
 alias tail_ith_sql="sithaque 'sudo tail -f -n 100 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |lwatch -i-"
 alias tail_ith_select="sithaque 'sudo tail -f -n 200 /usr/local/pgsql/data/pg_log/\`sudo ls -tr /usr/local/pgsql/data/pg_log/|tail -n 1\`' |ccze -A |grep -i select"
-alias update_doc="pvxcore; cd doc; make html"
-alias maj_wiki="cd ~/sandboxes/PvxCoreApplication/doc;make html"
+alias maj_wiki="pvxcore; cd doc; make clean; make html"
 alias maj_wiki_temple="ssh pvx@temple 'bash -c \"cd wiki.provexi.fr/PvxCoreApplication/; git fetch origin; git rebase origin/next; cd doc; make html;\"'"
 
 # GIT
@@ -100,12 +100,10 @@ alias gig='git grep'
 alias gia='git add'
 alias gid='git diff'
 alias gif='git fetch'
-alias gifm='git format-patch origin/master'
-alias gifn='git format-patch origin/next'
+alias gip='git format-patch -o ../patch/'
 alias gib='git branch -av'
 alias gil='git log'
 alias gis='git status'
-alias gip='git format-patch'
 alias gica='git commit -a'
 alias gic='git commit'
 alias gick='git checkout'

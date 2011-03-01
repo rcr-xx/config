@@ -1,6 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/rcr/sandboxes'
-let g:netrw_dirhist_2='/home/rcr/sandboxes/gitosis-admin.svg/.git'
-let g:netrw_dirhist_3='/home/rcr/sandboxes/gitosis-admin/.git'
-let g:netrw_dirhist_4='/home/rcr/sandboxes/gitosis-admin'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/home/rcr/sandboxes/PvxCoreApplication/PvxFactory'
+let g:netrw_dirhist_2='/home/rcr/sandboxes/PvxCoreApplication/web_core/utils'
