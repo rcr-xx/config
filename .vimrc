@@ -28,6 +28,7 @@ set showtabline=2                " Affiche toujours les onglets
 set lcs:tab:>-,trail:.           " Affiche les tabs, les ' ' en fin de ligne et les \n
 set nu                           " Affiche les numéros de ligne
 set autowrite                    " Enregistre avant compilation, grep...
+set syntax=rest                  " Coloration des fichier rst
 syntax on                        " Activation de la coloration syntaxique
 colorscheme romanocry            " Thème vim
 filetype on                      " Detection to determine the type of the current file
@@ -44,7 +45,7 @@ let g:pydiction_location = '~/.vim/ftplugin/pydiction-1.2/complete-dict'
 " Commente/Decommente le bloc sélectionné
 map        <F2>  :python python_comment()<CR>
 map        <F3>  :python python_uncomment()<CR>
-" Free     <F4>  
+" Free     <F4>
 " Free     <F5>
 " Free     <F6>
 " Supprime les trailing whitespace
@@ -341,6 +342,12 @@ endfunction
 "    * URL : http://www.vim.org/scripts/script.php?script_id=2914
 "    * Installation :
 "         - Installer préalablement pep8.py : easy_install pep8
+
+" ==> RestructuredText
+"    * Fonction : Coloration syntaxique des fichiers rst
+"    * URL : http://www.vim.org/scripts/script.php?script_id=973
+"    * Installation :
+"        - Dézipper dans le répertoire ~/.vim/syntax
 
 
 " =============================================================================================== "
